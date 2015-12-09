@@ -46,12 +46,13 @@ public class PokemonArena extends RenderText {
 		sleep(700);
 
 		for (String s : pokeSubtitle) {
-			System.out.printf("                 %s", s);
+			System.out.printf("                  %s", s);
 		}
 
 		sleep(500);
 
-		System.out.printf("%38s", "January 2015\n");
+		System.out.printf("%27s", " ");
+		delayedPrint("January 2015\n");
 
 	}
 

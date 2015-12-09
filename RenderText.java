@@ -19,4 +19,17 @@ public class RenderText {
 		}
 	}
 
+	/**
+	 * Prints a string to the console with a typing effect
+	 * 
+	 * @param contents The contents to be printed
+	 */
+	public static void delayedPrint(String content) {
+		for (int i = 0; i < content.length(); i++) {
+			System.out.print(content.charAt(i));
+			sleep(40);
+		}
+	}
+
 }
+
