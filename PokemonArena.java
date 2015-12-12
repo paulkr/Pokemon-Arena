@@ -6,53 +6,54 @@ import java.util.*;
 
 public class PokemonArena extends RenderText {
 
+	private static PokemonCollection pokemons = new PokemonCollection(); 
+
 	public static void main(String[] args) {
 
 		// Intro
-		printTitle();
+		// printTitle();
 
-
-
+		delayedCharPrint(pokemons.toString());
 	}
 
 	public static void printTitle() {
 
-		String pokeTitle = "                               .::.                             \n" +
-		"                              .;:**'                            \n" +
-		"                              `                                 \n" +
-		"  .:XHHHHk.              db.   .;;.     dH  MX                  \n" +
-		"oMMMMMMMMMMM       ~MM  dMMP :MMMMMR   MMM  MR      ~MRMN       \n" +
-		"QMMMMMb  'MMX       MMMMMMP !MX' :M~   MMM MMM  .oo. XMMM 'MMM  \n" +
-		"  `MMMM.  )M> :X!Hk. MMMM   XMM.o'  .  MMMMMMM X?XMMM MMM>!MMP  \n" +
-		"   'MMMb.dM! XM M'?M MMMMMX.`MMMMMMMM~ MM MMM XM `' MX MMXXMM   \n" +
-		"    ~MMMMM~ XMM. .XM XM`'MMMb.~*?**~ .MMX M t MMbooMM XMMMMMP   \n" +
-		"     ?MMM>  YMMMMMM! MM   `?MMRb.    `MM   !L'MMMMM XM IMMM     \n" +
-		"      MMMX   'MMMM'  MM       ~%:           !Mh.''' dMI IMMP    \n" +
-		"      'MMM.                                             IMX     \n" +
-		"       ~M!M                                             IM        ";
-
-		String[] pokeSubtitle = {
-			" ____             _   _  _       \n",
-			"|  _ \\ __ _ _   _| | | |/ /     \n",
-			"| |_) / _` | | | | | | ' /       \n",
-			"|  __/ (_| | |_| | | | . \\ _    \n", 
-			"|_|   \\__,_|\\__,_|_| |_|\\_(_) \n\n"
+		String[] pokeTitle = { 
+			"                               .::.                           ",
+			"                              .;:**'                          ",
+			"                              `                               ",
+			"  .:XHHHHk.              db.   .;;.     dH  MX                ",
+			"oMMMMMMMMMMM       ~MM  dMMP :MMMMMR   MMM  MR      ~MRMN     ",
+			"QMMMMMb  'MMX       MMMMMMP !MX' :M~   MMM MMM  .oo. XMMM 'MMM",
+			"  `MMMM.  )M> :X!Hk. MMMM   XMM.o'  .  MMMMMMM X?XMMM MMM>!MMP",
+			"   'MMMb.dM! XM M'?M MMMMMX.`MMMMMMMM~ MM MMM XM `' MX MMXXMM ",
+			"    ~MMMMM~ XMM. .XM XM`'MMMb.~*?**~ .MMX M t MMbooMM XMMMMMP ",
+			"     ?MMM>  YMMMMMM! MM   `?MMRb.    `MM   !L'MMMMM XM IMMM   ",
+			"      MMMX   'MMMM'  MM       ~%:           !Mh.''' dMI IMMP  ",
+			"      'MMM.                                             IMX   ",
+			"       ~M!M                                             IM    " 
 		};
 
-		System.out.println(pokeTitle);
+		String[] pokeSubtitle = {
+			" ____             _   _  _      ",
+			"|  _ \\ __ _ _   _| | | |/ /    ",
+			"| |_) / _` | | | | | | ' /      ",
+			"|  __/ (_| | |_| | | | . \\ _   ", 
+			"|_|   \\__,_|\\__,_|_| |_|\\_(_)\n"
+		};
+
+		delayedLinePrint(pokeTitle);
 
 		// Pause then print formatted text
 
 		sleep(700);
 
-		for (String s : pokeSubtitle) {
-			System.out.printf("                  %s", s);
-		}
+		delayedLinePrint(pokeSubtitle);
 
 		sleep(500);
 
 		System.out.printf("%27s", " ");
-		delayedPrint("January 2015\n");
+		delayedCharPrint("January 2015");
 
 	}
 
