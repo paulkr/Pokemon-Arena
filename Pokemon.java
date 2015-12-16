@@ -19,7 +19,6 @@ public class Pokemon {
 	boolean isStunned = false;
 	boolean isDisabled = false;
 
-
 	public Pokemon(String name, int hp, String type, String resistance, String weakness, ArrayList<Attack> attacks) {
 		this.name       = name;
 
@@ -33,5 +32,6 @@ public class Pokemon {
 		
 		this.attacks    = attacks;
 	}
+
 
 }

@@ -4,57 +4,41 @@
 
 import java.util.*;
 
-public class PokemonArena extends RenderText {
+public class PokemonArena {
 
-	private static PokemonCollection pokemons = new PokemonCollection(); 
+	private static PokemonCollection pokeLot = new PokemonCollection();
+	private static ArrayList<Pokemon> pokemonTeam = new ArrayList<Pokemon>();
+	private static ASCII displayArt = new ASCII(); 
+	private static RenderText styledText = new RenderText();
+	private static Tools tools = new Tools();
 
 	public static void main(String[] args) {
 
 		// Intro
-		// printTitle();
+		// displayArt.introTitle();
 
-		delayedCharPrint(pokemons.toString());
+		// styledText.delayedCharPrint(pokemons.toString(), 20);
+		
+		selectPokemon();
+
 	}
 
-	public static void printTitle() {
+	public static void selectPokemon() {
+		int chosen = 0;
+		Scanner stdin = new Scanner(System.in);
 
-		String[] pokeTitle = { 
-			"                               .::.                           ",
-			"                              .;:**'                          ",
-			"                              `                               ",
-			"  .:XHHHHk.              db.   .;;.     dH  MX                ",
-			"oMMMMMMMMMMM       ~MM  dMMP :MMMMMR   MMM  MR      ~MRMN     ",
-			"QMMMMMb  'MMX       MMMMMMP !MX' :M~   MMM MMM  .oo. XMMM 'MMM",
-			"  `MMMM.  )M> :X!Hk. MMMM   XMM.o'  .  MMMMMMM X?XMMM MMM>!MMP",
-			"   'MMMb.dM! XM M'?M MMMMMX.`MMMMMMMM~ MM MMM XM `' MX MMXXMM ",
-			"    ~MMMMM~ XMM. .XM XM`'MMMb.~*?**~ .MMX M t MMbooMM XMMMMMP ",
-			"     ?MMM>  YMMMMMM! MM   `?MMRb.    `MM   !L'MMMMM XM IMMM   ",
-			"      MMMX   'MMMM'  MM       ~%:           !Mh.''' dMI IMMP  ",
-			"      'MMM.                                             IMX   ",
-			"       ~M!M                                             IM    " 
-		};
+		while (chosen != 4) {
+			String message = "Pick " + (4 - chosen) + " pokemon for your collection!";
+			styledText.delayedCharPrint(message, 40);
 
-		String[] pokeSubtitle = {
-			" ____             _   _  _      ",
-			"|  _ \\ __ _ _   _| | | |/ /    ",
-			"| |_) / _` | | | | | | ' /      ",
-			"|  __/ (_| | |_| | | | . \\ _   ", 
-			"|_|   \\__,_|\\__,_|_| |_|\\_(_)\n"
-		};
+			message = "Here are your options: ";
+			styledText.delayedCharPrint(message, 40);
+			styledText.delayedCharPrint(pokeLot.toString(), 5);
 
-		delayedLinePrint(pokeTitle);
+			int selectedPokemonIndex = tools.getInt(1, pokeLot.pokemons.size());
 
-		// Pause then print formatted text
-
-		sleep(700);
-
-		delayedLinePrint(pokeSubtitle);
-
-		sleep(500);
-
-		System.out.printf("%27s", " ");
-		delayedCharPrint("January 2015");
-
+			chosen ++;
+		}
 	}
 
 }

@@ -9,13 +9,22 @@ public class PokemonCollection {
 
 	public ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
 
-	public PokemonCollection() throws IOException {
-		Scanner inFile = new Scanner(new BufferedReader(new FileReader("resources/pokemon.txt")));
+	public PokemonCollection() {
+
+		Scanner inFile;
+
+		try {
+			inFile = new Scanner(new BufferedReader(new FileReader("resources/pokemon.txt")));
+		} catch(IOException e) {
+			System.out.println("Could not loadfile 'resources/pokemon.txt'!");
+			System.exit(-1);
+			return;
+		}
 
 		int pokeNum = inFile.nextInt();
 		Pokemon[] pokemon = new Pokemon[pokeNum];
 
-		inFile.nextLine(); // Skip first line
+		inFile.nextLine(); // Skip to line
 
 		for (int i = 0; i < pokeNum; i++) {
 			// Pass string to processLine method
@@ -50,6 +59,10 @@ public class PokemonCollection {
 		}
 
 		pokemons.add(new Pokemon(name, hp, type, resistance, weakness, attacks));
+	}
+
+	public void removePokemon() {
+		
 	}
 
 	public String toString() {

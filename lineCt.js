@@ -24,7 +24,9 @@ function countLines(file) {
 
 for (var file = 0; file < files.length; file++) {
 	if (!(toExclude.indexOf(files[file]) > -1)) {
-		count += countLines(files[file]);
+		if (!(files[file].slice(files[file].length - 5, files[file].length) === "class")) {
+			count += countLines(files[file]);
+		}
 	}	
 }
 
