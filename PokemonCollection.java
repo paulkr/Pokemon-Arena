@@ -38,14 +38,13 @@ public class PokemonCollection {
 
 		String[] content = data.split(",");
 
-		String name       = content[0];
-		int hp            = Integer.parseInt(content[1]);
-		String type       = content[2];
-		String resistance = content[3];
-		String weakness   = content[4];
-
-		int attackNums             = Integer.parseInt(content[5]);
-		ArrayList<Attack> attacks  = new ArrayList<Attack>();
+		String name               = content[0];
+		int hp                    = Integer.parseInt(content[1]);
+		String type               = content[2];
+		String resistance         = content[3];
+		String weakness           = content[4];
+		int attackNums            = Integer.parseInt(content[5]);
+		ArrayList<Attack> attacks = new ArrayList<Attack>();
 
 		int add = 0;
 
@@ -61,8 +60,17 @@ public class PokemonCollection {
 		pokemons.add(new Pokemon(name, hp, type, resistance, weakness, attacks));
 	}
 
-	public void removePokemon() {
-		
+	/**
+	 * Removes pokemon from ArrayList based on name
+	 * 
+	 * @param name     Name of pokemon
+	 */
+	public void removePokemon(String name) {
+		for (int i = 0; i < pokemons.size(); i++) {
+			if (pokemons.get(i).name.equals(name)) {
+				pokemons.remove(i);
+			}
+		}
 	}
 
 	public String toString() {
@@ -70,7 +78,6 @@ public class PokemonCollection {
 		
 		for (int i = 1; i < pokemons.size() + 1; i++) {
 			output += String.format("%d: %s\n", i, pokemons.get(i - 1).name);
-			// System.out.println(pokemons.get(i).name);
 		}
 
 		return output;

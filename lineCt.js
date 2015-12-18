@@ -25,9 +25,10 @@ function countLines(file) {
 for (var file = 0; file < files.length; file++) {
 	if (!(toExclude.indexOf(files[file]) > -1)) {
 		if (!(files[file].slice(files[file].length - 5, files[file].length) === "class")) {
+			console.log("Counting: " + files[file]);
 			count += countLines(files[file]);
 		}
-	}	
+	}
 }
 
-console.log("Total Lines: " + count);
+console.log("\nTotal Lines: " + count);

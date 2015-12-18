@@ -1,21 +1,27 @@
+// Tools.java
+// Paul Krishnamurthy
+// Pokemon Arena Assignment
 
 import java.util.*;
+import java.io.Console;
 
 public class Tools {
 
 	private Scanner stdin = new Scanner(System.in);
+	private Console console = System.console();
 
-	/**
-	 * Pauses the program for a given duration
-	 * 
-	 * @param milliseconds    The duration, in milliseconds, to pause the program
-	 */
-	public static void sleep(long milliseconds) {
-		try {
-			Thread.sleep(milliseconds);
-		} catch(InterruptedException e) {
-			e.printStackTrace();
+	public String getString(String toFind) {
+		String output = "";
+		
+		if (toFind.equals("enter")) {
+			// Mask input to appear as only enter was pressed
+			char[] hidden = console.readPassword("");
+			output = "enter";
+		} else {
+			output = stdin.nextLine();
 		}
+
+		return output;
 	}
 
 	public int getInt(int min, int max) {
@@ -31,12 +37,11 @@ public class Tools {
 			}
 
 			if (n < min || n > max) {
-				System.out.printf("Enter a number in the range of %d and %d!\n", min, max);
+				System.out.printf("That's not an option! Enter a number in the range of %d and %d!\n", min, max);
 			} else {
-				break;
+				break; // Valid input 
 			}
 		}
-		
 		return n;
 	}
 

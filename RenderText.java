@@ -4,7 +4,20 @@
 
 import java.util.*;
 
-public class RenderText extends Tools {
+public class RenderText {
+
+	/**
+	 * Pauses the program for a given duration
+	 * 
+	 * @param milliseconds    The duration, in milliseconds, to pause the program
+	 */
+	public static void sleep(long milliseconds) {
+		try {
+			Thread.sleep(milliseconds);
+		} catch(InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * Prints a string to the console with a typing effect
@@ -13,8 +26,13 @@ public class RenderText extends Tools {
 	 */
 	public static void delayedCharPrint(String content, long milliseconds) {
 		for (int i = 0; i < content.length(); i++) {
-			System.out.print(content.charAt(i));
-			sleep(milliseconds);
+			// Don't sleep for spaces
+			if (content.charAt(i) == ' ') {
+				System.out.print(content.charAt(i));
+			} else {
+				System.out.print(content.charAt(i));
+				sleep(milliseconds);
+			}
 		}
 		System.out.println();
 	}
@@ -36,9 +54,38 @@ public class RenderText extends Tools {
 	 * 
 	 * @param size     Number of pokemon
 	 */
-	public static void listPokemon(int size) {
-		if (size == 20) {
-			
+	public static void listPokemon(ArrayList<Pokemon> pokemons) {
+		int limit = pokemons.size();
+		String row;
+		System.out.println("+---------------------------------+");
+		for (int i = 0; i < limit; i++) {
+			if (i + 1 < limit) {
+				if (i > 9) {
+					row = String.format("| %d. %10s | %d. %10s |", (i + 1), pokemons.get(i).name, (i + 2), pokemons.get(i + 1).name);
+					delayedCharPrint(row, 4);
+				} else {
+					if (i == 8) {
+						row = String.format("| %d. %11s | %d. %10s |", (i + 1), pokemons.get(i).name, (i + 2), pokemons.get(i + 1).name);
+						delayedCharPrint(row, 4);
+					} else {
+						row = String.format("| %d. %11s | %d. %11s |", (i + 1), pokemons.get(i).name, (i + 2), pokemons.get(i + 1).name);
+						delayedCharPrint(row, 4);
+					}
+				}
+				i += 1;
+				System.out.println("+---------------------------------+");
+			} else {
+				if (i > 9) {
+					row = String.format("| %d. %10s |", (i + 1), pokemons.get(i).name);
+					delayedCharPrint(row, 4);
+					System.out.println("+----------------+");
+				} else {
+					row = String.format("| %d. %11s |", (i + 1), pokemons.get(i).name);
+					delayedCharPrint(row, 4);
+					System.out.println("+----------------+");
+				}
+				break;
+			}
 		}
 	}
 

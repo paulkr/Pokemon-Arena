@@ -37,6 +37,7 @@ public class ASCII extends RenderText {
 		sleep(500);
 		System.out.printf("%27s", " ");
 		delayedCharPrint("January 2015", 40);
+		sleep(1000);
 	}
 
 }
