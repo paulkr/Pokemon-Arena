@@ -14,10 +14,10 @@ public class PokemonArena extends RenderText {
 
 	public static void main(String[] args) {
 
-		// gameIntro();
-
-		
+		gameIntro();
 		selectPokemon();
+
+
 
 	}
 
@@ -30,7 +30,9 @@ public class PokemonArena extends RenderText {
 		clearConsole();
 
 		delayedLinePrint(new String[] {
-			"Welcome to the Pokemon Arena!"
+			"Welcome to the Pokemon Arena!",
+			"Be prepared for what lies ahead!",
+			"Start off by picking your team...", "\n"
 		}, 20);
 
 		sleep(1000);
@@ -45,9 +47,11 @@ public class PokemonArena extends RenderText {
 			delayedCharPrint("Here are your options: ", 40);
 			listPokemon(pokeLot.pokemons);
 
-			int selectedPokemonIndex = tools.getInt(1, pokeLot.pokemons.size());
+			// Get the user selection
+			int selectedPokemonIndex = tools.getInt(1, pokeLot.pokemons.size(), "Enter number: ");
 			Pokemon selectedPokemon = pokeLot.pokemons.get(selectedPokemonIndex - 1);
 
+			// Add to the pokemon team and remove from the options
 			pokemonTeam.add(selectedPokemon);
 			pokeLot.removePokemon(selectedPokemon.name);
 
@@ -61,6 +65,17 @@ public class PokemonArena extends RenderText {
 		for (int i = 0; i < pokemonTeam.size(); i++) {
 			System.out.println(pokemonTeam.get(i).name);
 		}
+
+		sleep(500);
+		clear();
+	}
+
+	public static boolean battleSequence(Pokemon enemy) {
+
+		boolean isWinnning = true;
+
+
+		return isWinnning;
 	}
 
 }

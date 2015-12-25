@@ -7,21 +7,23 @@ import java.io.*;
 
 public class PokemonCollection {
 
+	// ArrayList to hold all pokemon
 	public ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
 
+	// Slice data file in the constructor
 	public PokemonCollection() {
-
 		Scanner inFile;
 
+		// Try and catch the IOException
 		try {
 			inFile = new Scanner(new BufferedReader(new FileReader("resources/pokemon.txt")));
 		} catch(IOException e) {
 			System.out.println("Could not loadfile 'resources/pokemon.txt'!");
-			System.exit(-1);
+			System.exit(-1); // Exit program if file could not be found
 			return;
 		}
 
-		int pokeNum = inFile.nextInt();
+		int pokeNum = inFile.nextInt(); // Nnu
 		Pokemon[] pokemon = new Pokemon[pokeNum];
 
 		inFile.nextLine(); // Skip to line
@@ -34,10 +36,14 @@ public class PokemonCollection {
 		inFile.close();
 	}
 
+	/**
+	 * Constructs a new pokemon and attack with a line from the data file
+	 * 
+	 * @param data     String line of data from the "resources/pokemon.txt" data file
+	 */
 	public void processLine(String data) {
 
-		String[] content = data.split(",");
-
+		String[] content          = data.split(",");
 		String name               = content[0];
 		int hp                    = Integer.parseInt(content[1]);
 		String type               = content[2];
@@ -57,7 +63,21 @@ public class PokemonCollection {
 			add += 4;
 		}
 
+		// Add new pokemon object to ArrayList
 		pokemons.add(new Pokemon(name, hp, type, resistance, weakness, attacks));
+	}
+
+	/**
+	 * Returns a random pokemon from the pokemon ArrayList
+	 * Removes the chosen pokemon from the ArrayList
+	 * 
+	 * @return selected     Randomly selected Pokemon object
+	 */
+	public Pokemon randomPokemon() {
+		Random rand = new Random();
+		Pokemon selected = pokemons.get(rand.nextInt(pokemons.size()));
+		removePokemon(selected.name);
+		return selected;
 	}
 
 	/**
@@ -72,16 +92,4 @@ public class PokemonCollection {
 			}
 		}
 	}
-
-	public String toString() {
-		String output = "";
-		
-		for (int i = 1; i < pokemons.size() + 1; i++) {
-			output += String.format("%d: %s\n", i, pokemons.get(i - 1).name);
-		}
-
-		return output;
-	}
-
-
 }

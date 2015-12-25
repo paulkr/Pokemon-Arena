@@ -22,7 +22,8 @@ public class RenderText {
 	/**
 	 * Prints a string to the console with a typing effect
 	 * 
-	 * @param contents     The contents to be printed
+	 * @param contents          The contents to be printed
+	 * @param  milliseconds     Duration to sleep in milliseconds
 	 */
 	public static void delayedCharPrint(String content, long milliseconds) {
 		for (int i = 0; i < content.length(); i++) {
@@ -40,7 +41,8 @@ public class RenderText {
 	/**
 	 * Prints lines of multiline text with a delay
 	 * 
-	 * @param multiline     String array of lines to print 
+	 * @param multiline         String array of lines to print
+	 * @param  milliseconds     Duration to sleep in milliseconds 
 	 */
 	public static void delayedLinePrint(String[] multiline, long milliseconds) {
 		for (int i = 0; i < multiline.length; i++) {
@@ -50,9 +52,9 @@ public class RenderText {
 	}
 
 	/**
-	 * Displays pokemon in a table with row numbers dependent on number of pokemons
+	 * Displays and numvbers pokemon in a styled table
 	 * 
-	 * @param size     Number of pokemon
+	 * @param pokemons     ArrayList of pokemon objects
 	 */
 	public static void listPokemon(ArrayList<Pokemon> pokemons) {
 		int limit = pokemons.size();
@@ -74,6 +76,7 @@ public class RenderText {
 				}
 				i += 1;
 				System.out.println("+---------------------------------+");
+
 			} else {
 				if (i > 9) {
 					row = String.format("| %d. %10s |", (i + 1), pokemons.get(i).name);
@@ -90,19 +93,23 @@ public class RenderText {
 	}
 
 	/**
-	 * Clears console
+	 * Clears console based on operating system
 	 */
 	public static void clearConsole() {
-		// Clear differently based on operating system
-		if (System.getProperty("os.name").toLowerCase().contains("windows")) {
-			for (int i = 0; i < 40; i++) {
-				System.out.println("\n");
+		// Clear differently based on operating system using appropriate command
+		try {
+			// Invoking command line clearing properly thanks to stackoverflow
+			if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+				new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+			} else {
+				System.out.print("\033[H\033[2J");  
+    			System.out.flush();
 			}
-		// Proper method to clear for unix
-		// Thanks to stackoverflow
-		} else {
-			System.out.print("\u001b[2J" + "\u001b[H");
-			System.out.flush();
+		} catch(Exception e) {
+			// If all else fails...
+			for (int i = 0; i < 40; i++) {
+				System.out.println();
+			}
 		}
 	}
 

@@ -18,4 +18,8 @@ public class Attack {
 		this.special = special;
 	}
 
+	public void attack(Pokemon predator, Pokemon prey) {
+		
+	}
+
 }

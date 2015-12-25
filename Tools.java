@@ -24,11 +24,13 @@ public class Tools {
 		return output;
 	}
 
-	public int getInt(int min, int max) {
+	public int getInt(int min, int max, String message) {
 		int n;
 
 		while (true) {
+			System.out.print(message);
 			String input = stdin.nextLine();
+			// Try to parse input as integer
 			try {
 				n = Integer.parseInt(input);
 			} catch (NumberFormatException e) {
@@ -36,6 +38,7 @@ public class Tools {
 				continue; // Skip to next iteration
 			}
 
+			// If the number is not an acceptable range
 			if (n < min || n > max) {
 				System.out.printf("That's not an option! Enter a number in the range of %d and %d!\n", min, max);
 			} else {
