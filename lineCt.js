@@ -1,6 +1,9 @@
-// lineCt.js
-// Paul Krishnamurthy 2015
-// Node.js script to count lines of code
+/**
+ * lineCt.js
+ * Counts number of lines of code
+ *
+ * @author Paul Krishnamurthy
+ */
 
 var fs        = require("fs");
 var count     = 0;
@@ -14,7 +17,7 @@ var toExclude = [
 ]
 
 /**
- * @param {String} file Path and name of file
+ * @param {String}     File Path and name of file
  */
 function countLines(file) {
 	// Use fs synchronously

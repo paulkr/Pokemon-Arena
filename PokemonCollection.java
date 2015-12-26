@@ -1,6 +1,9 @@
-// PokemonCollection.java
-// Paul Krishnamurthy
-// Pokemon Arena Assignment
+/**
+ * PokemonCollection.java
+ * Stores all pokemon from "resources/pokemon.txt" data file
+ *
+ *  @author Paul Krishnamurthy
+ */
 
 import java.util.*;
 import java.io.*;
@@ -23,10 +26,11 @@ public class PokemonCollection {
 			return;
 		}
 
-		int pokeNum = inFile.nextInt(); // Nnu
+		// Create a Pokemon[] based on the number of Pokemon
+		int pokeNum = inFile.nextInt();
 		Pokemon[] pokemon = new Pokemon[pokeNum];
 
-		inFile.nextLine(); // Skip to line
+		inFile.nextLine(); // Skip to next line
 
 		for (int i = 0; i < pokeNum; i++) {
 			// Pass string to processLine method
@@ -52,7 +56,7 @@ public class PokemonCollection {
 		int attackNums            = Integer.parseInt(content[5]);
 		ArrayList<Attack> attacks = new ArrayList<Attack>();
 
-		int add = 0;
+		int add = 0; // Number to help with slicing from data string
 
 		for (int i = 0; i < attackNums; i++) {
 			// Contruct a new attack and add it to attacks list
@@ -75,6 +79,7 @@ public class PokemonCollection {
 	 */
 	public Pokemon randomPokemon() {
 		Random rand = new Random();
+		// Select a random Pokemon and remove it from pokemons ArrayList
 		Pokemon selected = pokemons.get(rand.nextInt(pokemons.size()));
 		removePokemon(selected.name);
 		return selected;

@@ -1,11 +1,15 @@
-// Attack.java
-// Paul Krishnamurthy
-// Pokemon Arena Assignment
+/**
+ * Attack.java
+ * Constructs each attack and changes Pokemon stats when attacking
+ *
+ *  @author Paul Krishnamurthy
+ */
 
 import java.util.*;
 
 public class Attack {
 
+	// Information about each attack -> Constants
 	final String name;
 	final int cost;
 	final int damage;
@@ -18,6 +22,12 @@ public class Attack {
 		this.special = special;
 	}
 
+	/**
+	 * Changes Pokemon statistics for both Pokemon after an attack
+	 * 
+	 * @param predator     Pokemon object of attacking pokemon
+	 * @param prey         Pokemon object of defending pokemon
+	 */
 	public void attack(Pokemon predator, Pokemon prey) {
 		
 	}

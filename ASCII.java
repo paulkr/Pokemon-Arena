@@ -1,6 +1,13 @@
+/**
+ * ASCII.java
+ * Stores and displays ASCII art
+ *
+ *  @author Paul Krishnamurthy
+ */
 
 public class ASCII extends RenderText {
 
+	// Main pokemon title
 	private String[] pokeTitle = { 
 		"                               .::.                           ",
 		"                              .;:**'                          ",
@@ -17,6 +24,7 @@ public class ASCII extends RenderText {
 		"       ~M!M                                             IM    " 
 	};
 
+	// Author subtitle text
 	private String[] pokeSubtitle = {
 		"                     ____             _   _  _      ",
 		"                    |  _ \\ __ _ _   _| | | |/ /    ",
@@ -25,6 +33,7 @@ public class ASCII extends RenderText {
 		"                    |_|   \\__,_|\\__,_|_| |_|\\_(_)\n"
 	};
 
+	// Congratulations (winner) text
 	private String[] congrats = {
 		" _____                             _         _       _   _                 _           ",
 		"/  __ \\                           | |       | |     | | (_)               | |         ",
@@ -36,6 +45,7 @@ public class ASCII extends RenderText {
 		"                   |___/                                                              \n"
 	}
 
+	// You lose (loser) text
 	private String[] loser = {
 		"__   __            _                    _         ",
 		"\\ \\ / /           | |                  | |      ",

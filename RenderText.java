@@ -1,6 +1,9 @@
-// RenderText.java
-// Paul Krishnamurthy
-// Pokemon Arena Assignment
+/**
+ * RenderText.java
+ * Displays text with styled effects
+ *
+ *  @author Paul Krishnamurthy
+ */
 
 import java.util.*;
 
@@ -52,39 +55,35 @@ public class RenderText {
 	}
 
 	/**
-	 * Displays and numvbers pokemon in a styled table
+	 * Displays and numbers Pokemon in a styled table
 	 * 
-	 * @param pokemons     ArrayList of pokemon objects
+	 * @param pokemons     ArrayList of Pokemon objects
 	 */
 	public static void listPokemon(ArrayList<Pokemon> pokemons) {
-		int limit = pokemons.size();
-		String row;
+		int limit = pokemons.size(); // The number of Pokemon
+		// Display data in a formatted table
 		System.out.println("+---------------------------------+");
 		for (int i = 0; i < limit; i++) {
+			// Display two Pokemon names side-by-side
 			if (i + 1 < limit) {
 				if (i > 9) {
-					row = String.format("| %d. %10s | %d. %10s |", (i + 1), pokemons.get(i).name, (i + 2), pokemons.get(i + 1).name);
-					delayedCharPrint(row, 4);
+					delayedCharPrint(String.format("| %d. %10s | %d. %10s |", (i + 1), pokemons.get(i).name, (i + 2), pokemons.get(i + 1).name), 4);
 				} else {
 					if (i == 8) {
-						row = String.format("| %d. %11s | %d. %10s |", (i + 1), pokemons.get(i).name, (i + 2), pokemons.get(i + 1).name);
-						delayedCharPrint(row, 4);
+						delayedCharPrint(String.format("| %d. %11s | %d. %10s |", (i + 1), pokemons.get(i).name, (i + 2), pokemons.get(i + 1).name), 4);
 					} else {
-						row = String.format("| %d. %11s | %d. %11s |", (i + 1), pokemons.get(i).name, (i + 2), pokemons.get(i + 1).name);
-						delayedCharPrint(row, 4);
+						delayedCharPrint(String.format("| %d. %11s | %d. %11s |", (i + 1), pokemons.get(i).name, (i + 2), pokemons.get(i + 1).name), 4);
 					}
 				}
 				i += 1;
 				System.out.println("+---------------------------------+");
-
+			// Display a row with only 1 Pokemon name
 			} else {
 				if (i > 9) {
-					row = String.format("| %d. %10s |", (i + 1), pokemons.get(i).name);
-					delayedCharPrint(row, 4);
+					delayedCharPrint(String.format("| %d. %10s |", (i + 1), pokemons.get(i).name), 4);
 					System.out.println("+----------------+");
 				} else {
-					row = String.format("| %d. %11s |", (i + 1), pokemons.get(i).name);
-					delayedCharPrint(row, 4);
+					delayedCharPrint(String.format("| %d. %11s |", (i + 1), pokemons.get(i).name), 4);
 					System.out.println("+----------------+");
 				}
 				break;
@@ -98,7 +97,7 @@ public class RenderText {
 	public static void clearConsole() {
 		// Clear differently based on operating system using appropriate command
 		try {
-			// Invoking command line clearing properly thanks to stackoverflow
+			// Invoking console clearing properly thanks to StackOverflow
 			if (System.getProperty("os.name").toLowerCase().contains("windows")) {
 				new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
 			} else {
@@ -106,7 +105,7 @@ public class RenderText {
     			System.out.flush();
 			}
 		} catch(Exception e) {
-			// If all else fails...
+			// If all else fails, print some blank lines!
 			for (int i = 0; i < 40; i++) {
 				System.out.println();
 			}

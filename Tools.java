@@ -1,6 +1,9 @@
-// Tools.java
-// Paul Krishnamurthy
-// Pokemon Arena Assignment
+/**
+ * Tools.java
+ * Useful tools used throughout the game sequence
+ *
+ *  @author Paul Krishnamurthy
+ */
 
 import java.util.*;
 import java.io.Console;
@@ -10,6 +13,12 @@ public class Tools {
 	private Scanner stdin = new Scanner(System.in);
 	private Console console = System.console();
 
+	/**
+	 * Method to get a string input
+	 * 
+	 * @param  toFind     Used to check if checking for enter pressed
+	 * @return            Input string
+	 */
 	public String getString(String toFind) {
 		String output = "";
 		
@@ -25,7 +34,7 @@ public class Tools {
 	}
 
 	public int getInt(int min, int max, String message) {
-		int n;
+		int n; // Stores number user will enter
 
 		while (true) {
 			System.out.print(message);
@@ -49,4 +58,3 @@ public class Tools {
 	}
 
 }
-

@@ -1,6 +1,9 @@
-// PokemonArena.java
-// Paul Krishnamurthy
-// Pokemon Arena Assignment
+/**
+ * PokemonArena.java
+ * Main class with entire game sequence 
+ *
+ *  @author Paul Krishnamurthy
+ */
 
 import java.util.*;
 
@@ -17,18 +20,22 @@ public class PokemonArena extends RenderText {
 		gameIntro();
 		selectPokemon();
 
-
-
 	}
 
+	/**
+	 * Graphic sequence for game introduction
+	 */
 	public static void gameIntro() {
+		// Display titles
 		displayArt.introTitle();
 		clearConsole();
 
+		// Prompt for enter to be pressed
 		System.out.println("Press [enter] to start...");
 		tools.getString("enter");
 		clearConsole();
 
+		// Welcome message
 		delayedLinePrint(new String[] {
 			"Welcome to the Pokemon Arena!",
 			"Be prepared for what lies ahead!",
@@ -38,16 +45,19 @@ public class PokemonArena extends RenderText {
 		sleep(1000);
 	}
 
+	/**
+	 * Method for user to select 4 Pokemon for their team
+	 */
 	public static void selectPokemon() {
-		int chosen = 0;
+		int chosen = 0; // Counter for number of selected Pokemon
 
 		while (chosen != 4) {
 			delayedCharPrint("Pick " + (4 - chosen) + " pokemon for your collection!", 40);
 
 			delayedCharPrint("Here are your options: ", 40);
-			listPokemon(pokeLot.pokemons);
+			listPokemon(pokeLot.pokemons); // List all available options to chose from
 
-			// Get the user selection
+			// Get the user's selection as a Pokemon object
 			int selectedPokemonIndex = tools.getInt(1, pokeLot.pokemons.size(), "Enter number: ");
 			Pokemon selectedPokemon = pokeLot.pokemons.get(selectedPokemonIndex - 1);
 
@@ -60,6 +70,7 @@ public class PokemonArena extends RenderText {
 			chosen ++;
 		}
 
+		// Display user's Pokemon team
 		System.out.println("Awesome job! Here is your team");	
 
 		for (int i = 0; i < pokemonTeam.size(); i++) {
@@ -70,6 +81,12 @@ public class PokemonArena extends RenderText {
 		clear();
 	}
 
+	/**
+	 * Battle sequence with one enemy
+	 * 
+	 * @param  enemy     Pokemon enemy object
+	 * @return           Boolean if user's Pokemon won or lost
+	 */
 	public static boolean battleSequence(Pokemon enemy) {
 
 		boolean isWinnning = true;
