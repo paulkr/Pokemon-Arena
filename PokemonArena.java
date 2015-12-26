@@ -78,7 +78,7 @@ public class PokemonArena extends RenderText {
 		}
 
 		sleep(500);
-		clear();
+		// clearConsole();
 	}
 
 	/**
