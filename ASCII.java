@@ -43,7 +43,7 @@ public class ASCII extends RenderText {
 		" \\____/\\___/|_| |_|\\__, |_|  \\__,_|\\__|\\__,_|_|\\__,_|\\__|_|\\___/|_| |_|___(_) ",
 		"                    __/ |                                                              ",
 		"                   |___/                                                              \n"
-	}
+	};
 
 	// You lose (loser) text
 	private String[] loser = {
@@ -53,7 +53,7 @@ public class ASCII extends RenderText {
 		"  \\ // _ \\| | | | | |    / _ \\/ __|/ _ \\ |    ",
 		"  | | (_) | |_| | | |___| (_) \\__ \\  __/_|      ",
 		"  \\_/\\___/ \\__,_| \\_____/\\___/|___/\\___(_) \n"
-	}
+	};
 
 	/**
 	 * Introduction title
