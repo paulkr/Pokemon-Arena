@@ -33,6 +33,14 @@ public class Tools {
 		return output;
 	}
 
+	/**
+	 * Method to get an int input
+	 * 
+	 * @param  min          Minimum range for number
+	 * @param  max          Maximum range for number
+	 * @param  message      Message prompt before input
+	 * @return              The valid number entered
+	 */
 	public int getInt(int min, int max, String message) {
 		int n; // Stores number user will enter
 

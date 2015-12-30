@@ -17,8 +17,14 @@ public class PokemonArena extends RenderText {
 
 	public static void main(String[] args) {
 
+		boolean winning = true;
+
 		gameIntro();
 		selectPokemon();
+
+		while (winning) {
+			winning = battleSequence()
+		}
 
 	}
 
@@ -71,13 +77,15 @@ public class PokemonArena extends RenderText {
 		}
 
 		// Display user's Pokemon team
-		System.out.println("Awesome job! Here is your team");	
+		delayedCharPrint("Awesome job! Here is your team", 40);	
 
 		for (int i = 0; i < pokemonTeam.size(); i++) {
 			System.out.println(pokemonTeam.get(i).name);
 		}
 
 		sleep(500);
+		delayedCharPrint("Get ready to fight!", 35);
+
 		// clearConsole();
 	}
 
