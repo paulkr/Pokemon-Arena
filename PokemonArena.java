@@ -17,14 +17,14 @@ public class PokemonArena extends RenderText {
 
 	public static void main(String[] args) {
 
-		boolean winning = true;
+		// boolean winning = true;
 
-		gameIntro();
-		selectPokemon();
+		// gameIntro();
+		// selectPokemon();
 
-		while (winning) {
-			winning = battleSequence()
-		}
+		// while (winning) {
+		// 	winning = battleSequence()
+		// }
 
 	}
 

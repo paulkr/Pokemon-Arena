@@ -7,7 +7,7 @@
 
 import java.util.*;
 
-public class Attack {
+public class Attack extends RenderText {
 
 	// Information about each attack -> Constants
 	final String name;
@@ -57,8 +57,27 @@ public class Attack {
 			attackPower *= 2; // Double the attack power
 		}
 		
-		// Check for special attacks
+		// Use a switch to handle specials
 		switch (special) {
+
+			case "STUN":
+				break;
+
+			case "WILD CARD":
+				break;
+
+			case "WILD STORM":
+				break;
+
+			case "DISABLE":
+				break;
+
+			case "RECHARGE":
+				break;
+
+			// NONE
+			default:
+				break;
 
 		}
 

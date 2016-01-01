@@ -50,20 +50,24 @@ public class PokemonCollection {
 		String[] content          = data.split(",");
 		String name               = content[0];
 		int hp                    = Integer.parseInt(content[1]);
-		String type               = content[2];
 		String resistance         = content[3];
 		String weakness           = content[4];
 		int attackNums            = Integer.parseInt(content[5]);
 		ArrayList<Attack> attacks = new ArrayList<Attack>();
 
+		// Set type to "NONE" if not specified
+		String type               = content[2].equals(" ") ? "NONE" : content[2];
+
 		int add = 0; // Number to help with slicing from data string
 
 		for (int i = 0; i < attackNums; i++) {
 			// Contruct a new attack and add it to attacks list
+			// Set special to "NONE" if not specified
+
 			attacks.add(new Attack(content[6 + add], 
 							Integer.parseInt(content[6 + add + 1]),
 							Integer.parseInt(content[6 + add + 2]),
-							content[6 + add + 3]));
+							content[6 + add + 3].equals(" ") ? "NONE" : content[6 + add + 3]));
 			add += 4;
 		}
 
