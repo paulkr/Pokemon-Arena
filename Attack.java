@@ -15,6 +15,8 @@ public class Attack extends RenderText {
 	final int damage;
 	final String special;
 
+	private tools = new Tools();
+
 	public Attack(String name, int cost, int damage, String special) {
 		this.name    = name;
 		this.cost    = cost;
@@ -61,26 +63,62 @@ public class Attack extends RenderText {
 		switch (special) {
 
 			case "STUN":
+
+				prey.hp -= attackPower; // Attack
+
+				// 50% chance of success to stun
+				if (tools.randChoice()) {
+					prey.isStunned = true;
+					delayedCharPrint(String.format("%s has been stunned!", prey.name), 40);
+				}
+
 				break;
 
 			case "WILD CARD":
+
+				// 50% chance to land successful attack
+				if (tools.randChoice()) {
+					prey.hp -= attackPower;
+					delayedCharPrint(String.format("You dealt %d damage to %s!", attackPower, prey.name), 40);
+				} else {
+					delayedCharPrint("Oh no! Your attack missed!", 40);
+				}
+
 				break;
 
 			case "WILD STORM":
-				break;
+
+				while (tools.randChoice()) {
+					prey.hp -= attackPower; // Attack
+					delayedCharPrint(String.format("You dealt %d damage to %s!", attackPower, prey.name), 40);
+				}
 
 			case "DISABLE":
-				break;
+
+				// Attack and disable
+				prey.hp -= attackPower;
+				prey.isDisabled = true;
+
+				delayedCharPrint(String.format("%s has been disabled!",, prey.name), 40);
+				delayedCharPrint(String.format("You dealt %d damage to %s!", attackPower, prey.name), 40);
 
 			case "RECHARGE":
-				break;
 
-			// NONE
+				prey.hp -= attackPower;
+				
+				// Add 20 energy up till max
+				predator.energy = Math.min(50, energy + 20);
+				delayedCharPrint("You gained 20 energy!", 40);
+
+				delayedCharPrint(String.format("You dealt %d damage to %s!", attackPower, prey.name), 40);
+
+			// Nothing special
 			default:
-				break;
+
+				prey.hp -= attackPower;
+				delayedCharPrint(String.format("You dealt %d damage to %s!", attackPower, prey.name), 40);
 
 		}
-
 	}
 
 }

@@ -13,7 +13,8 @@ var toExclude = [
 	".gitignore",
 	"README.md",
 	"lineCt.js",
-	"resources"
+	"resources",
+	"docs"
 ]
 
 /**

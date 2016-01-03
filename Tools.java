@@ -10,8 +10,9 @@ import java.io.Console;
 
 public class Tools {
 
-	private Scanner stdin = new Scanner(System.in);
+	private Scanner stdin   = new Scanner(System.in);
 	private Console console = System.console();
+	private Random rand     = new Random();
 
 	/**
 	 * Method to get a string input
@@ -64,5 +65,14 @@ public class Tools {
 		}
 		return n;
 	}
+
+	/**
+	 * Returns true or false, randomly
+	 * 
+	 * @return     true or false
+	 */
+	public boolean randChoice() {
+		return rand.nextBoolean();
+	} 
 
 }

@@ -17,14 +17,20 @@ public class PokemonArena extends RenderText {
 
 	public static void main(String[] args) {
 
-		// boolean winning = true;
+		
 
 		// gameIntro();
 		// selectPokemon();
 
-		// while (winning) {
-		// 	winning = battleSequence()
-		// }
+		boolean winning = true;
+
+		while (true) {
+
+			// Randomly select if user or computer goes first
+			String starter = toold.randChoice() ? "user" : "enemy";
+			winning = battleSequence()
+
+		}
 
 	}
 
@@ -95,9 +101,9 @@ public class PokemonArena extends RenderText {
 	 * @param  enemy     Pokemon enemy object
 	 * @return           Boolean if user's Pokemon won or lost
 	 */
-	public static boolean battleSequence(Pokemon enemy) {
+	public static boolean battleSequence(Pokemon enemy, String starter) {
 
-		boolean isWinnning = true;
+		boolean isWinnning = true;	
 
 
 		return isWinnning;

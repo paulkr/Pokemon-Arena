@@ -36,5 +36,26 @@ public class Pokemon {
 		this.attacks    = attacks;
 	}
 
+	/**
+	 * Resets Pokemon stats at the end of a battle
+	 */
+	public void reset() {
+
+	}
+
+
+	/**
+	 * Returns statistics about Pokemon
+	 * 
+	 * @return     String[] with hp and energy
+	 */
+	public String[] stats() {
+
+		// SHOULD GIVE AWAY RESISTANCE AND WEAKNESS TOO?
+		// 
+		return new String[] { hp, energy };
+
+	}
+
 
 }

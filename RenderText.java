@@ -62,6 +62,7 @@ public class RenderText {
 	public static void listPokemon(ArrayList<Pokemon> pokemons) {
 		int limit = pokemons.size(); // The number of Pokemon
 		// Display data in a formatted table
+		// Special formatting for spaces required for row with single and double digit numbers
 		System.out.println("+---------------------------------+");
 		for (int i = 0; i < limit; i++) {
 			// Display two Pokemon names side-by-side
@@ -89,6 +90,20 @@ public class RenderText {
 				break;
 			}
 		}
+	}
+
+	/**
+	 * Displays a set of options in a nice table
+	 * 
+	 * @param options     String[] of options
+	 * @param message     Message to be displayed
+	 */
+	public static void listOptions(String[] options, String message) {
+
+		delayedCharPrint(message, 40);
+
+		
+
 	}
 
 	/**
