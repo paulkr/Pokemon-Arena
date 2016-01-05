@@ -28,7 +28,7 @@ public class PokemonArena extends RenderText {
 
 			// Randomly select if user or computer goes first
 			String starter = tools.randChoice() ? "user" : "enemy";
-			winning = battleSequence();
+			winning = battleSequence(pokeLot.randomPokemon(), starter);
 
 		}
 
@@ -105,18 +105,20 @@ public class PokemonArena extends RenderText {
 
 		boolean isWinnning = true;
 
+		while (isWinnning) {
 
-		// User attack
-		if (starter.equals("user")) {
+			// User attack
+			if (starter.equals("user")) {
+				System.out.println("user attack");
+			// Enemy attack
+			} else {
+				System.out.println("enemy attack");
+			}
 
-		// Enemy attack
-		} else {
+			// Switch turn
+			starter = starter.equals("user") ? "enemy" : "user";
 
 		}
-
-		// Switch turn
-		starter = starter.equals("user") ? "enemy" : "user";
-
 
 		return isWinnning;
 	}

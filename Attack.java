@@ -15,7 +15,7 @@ public class Attack extends RenderText {
 	final int damage;
 	final String special;
 
-	private tools = new Tools();
+	private Tools tools = new Tools();
 
 	public Attack(String name, int cost, int damage, String special) {
 		this.name    = name;
@@ -99,7 +99,7 @@ public class Attack extends RenderText {
 				prey.hp -= attackPower;
 				prey.isDisabled = true;
 
-				delayedCharPrint(String.format("%s has been disabled!",, prey.name), 40);
+				delayedCharPrint(String.format("%s has been disabled!", prey.name), 40);
 				delayedCharPrint(String.format("You dealt %d damage to %s!", attackPower, prey.name), 40);
 
 			case "RECHARGE":
@@ -107,7 +107,7 @@ public class Attack extends RenderText {
 				prey.hp -= attackPower;
 				
 				// Add 20 energy up till max
-				predator.energy = Math.min(50, energy + 20);
+				predator.energy = Math.min(50, predator.energy + 20);
 				delayedCharPrint("You gained 20 energy!", 40);
 
 				delayedCharPrint(String.format("You dealt %d damage to %s!", attackPower, prey.name), 40);

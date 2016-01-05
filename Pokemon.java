@@ -49,11 +49,11 @@ public class Pokemon {
 	 * 
 	 * @return     String[] with hp and energy
 	 */
-	public String[] stats() {
+	public int[] stats() {
 
 		// SHOULD GIVE AWAY RESISTANCE AND WEAKNESS TOO?
-		// 
-		return new String[] { hp, energy };
+
+		return new int[] { hp, energy };
 
 	}
 
