@@ -27,8 +27,8 @@ public class PokemonArena extends RenderText {
 		while (true) {
 
 			// Randomly select if user or computer goes first
-			String starter = toold.randChoice() ? "user" : "enemy";
-			winning = battleSequence()
+			String starter = tools.randChoice() ? "user" : "enemy";
+			winning = battleSequence();
 
 		}
 
@@ -103,7 +103,19 @@ public class PokemonArena extends RenderText {
 	 */
 	public static boolean battleSequence(Pokemon enemy, String starter) {
 
-		boolean isWinnning = true;	
+		boolean isWinnning = true;
+
+
+		// User attack
+		if (starter.equals("user")) {
+
+		// Enemy attack
+		} else {
+
+		}
+
+		// Switch turn
+		starter = starter.equals("user") ? "enemy" : "user";
 
 
 		return isWinnning;
