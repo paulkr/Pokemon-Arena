@@ -7,3 +7,5 @@ TODO
 ----
 
 - [ ] Combine RenderText.java into Tools.java
+
+- [ ] Get Pokemon ascii art
