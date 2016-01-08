@@ -14,7 +14,7 @@ public class PokemonCollection {
 	public ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
 
 	// Slice data file in the constructor
-	public PokemonCollection() {
+	public PokemonCollection () {
 		Scanner inFile;
 
 		// Try and catch the IOException
@@ -45,7 +45,7 @@ public class PokemonCollection {
 	 * 
 	 * @param data     String line of data from the "resources/pokemon.txt" data file
 	 */
-	public void processLine(String data) {
+	public void processLine (String data) {
 
 		String[] content          = data.split(",");
 		String name               = content[0];
@@ -81,7 +81,7 @@ public class PokemonCollection {
 	 * 
 	 * @return selected     Randomly selected Pokemon object
 	 */
-	public Pokemon randomPokemon() {
+	public Pokemon randomPokemon () {
 		Random rand = new Random();
 		// Select a random Pokemon and remove it from pokemons ArrayList
 		Pokemon selected = pokemons.get(rand.nextInt(pokemons.size()));
@@ -94,7 +94,7 @@ public class PokemonCollection {
 	 * 
 	 * @param name     Name of pokemon
 	 */
-	public void removePokemon(String name) {
+	public void removePokemon (String name) {
 		for (int i = 0; i < pokemons.size(); i++) {
 			if (pokemons.get(i).name.equals(name)) {
 				pokemons.remove(i);

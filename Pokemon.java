@@ -22,7 +22,7 @@ public class Pokemon {
 	boolean isDisabled = false; // Boolean if Pokemon's state is disabled
 
 	// Constructs new Pokemon object
-	public Pokemon(String name, int hp, String type, String resistance, String weakness, ArrayList<Attack> attacks) {
+	public Pokemon (String name, int hp, String type, String resistance, String weakness, ArrayList<Attack> attacks) {
 		this.name       = name;
 
 		this.hp         = hp;
@@ -37,9 +37,18 @@ public class Pokemon {
 	}
 
 	/**
+	 * Checks if Pokemon is alive
+	 * 
+	 * @return     Returns true if Pokemon has more than 0 hp
+	 */
+	public boolean isAlive () {
+		return hp > 0;
+	}
+
+	/**
 	 * Resets Pokemon stats at the end of a battle
 	 */
-	public void reset() {
+	public void reset () {
 
 	}
 
@@ -49,7 +58,7 @@ public class Pokemon {
 	 * 
 	 * @return     String[] with hp and energy
 	 */
-	public int[] stats() {
+	public int[] stats () {
 
 		// SHOULD GIVE AWAY RESISTANCE AND WEAKNESS TOO?
 
@@ -57,5 +66,11 @@ public class Pokemon {
 
 	}
 
+	/**
+	 * @return     Name of Pokemon
+	 */
+	public String toString () {
+		return name;
+	}
 
 }

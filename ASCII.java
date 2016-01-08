@@ -5,7 +5,7 @@
  *  @author Paul Krishnamurthy
  */
 
-public class ASCII extends RenderText {
+public class ASCII extends Tools {
 
 	// Main pokemon title
 	private String[] pokeTitle = { 
@@ -55,10 +55,12 @@ public class ASCII extends RenderText {
 		"  \\_/\\___/ \\__,_| \\_____/\\___/|___/\\___(_) \n"
 	};
 
+	
+
 	/**
 	 * Introduction title
 	 */
-	public void introTitle() {
+	public void introTitle () {
 		delayedLinePrint(pokeTitle, 40);
 		sleep(700);
 		delayedLinePrint(pokeSubtitle, 40);
@@ -73,7 +75,7 @@ public class ASCII extends RenderText {
 	 * 
 	 * @param won     Boolean to see if user won or not
 	 */
-	public void gameOver(boolean won) {
+	public void gameOver (boolean won) {
 		if (won) {
 			delayedLinePrint(congrats, 40);
 			sleep(700);

@@ -20,7 +20,7 @@ var toExclude = [
 /**
  * @param {String}     File Path and name of file
  */
-function countLines(file) {
+function countLines (file) {
 	// Use fs synchronously
 	var text = fs.readFileSync(file, "utf8")
 	return text.split("\n").length;

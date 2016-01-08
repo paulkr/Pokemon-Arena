@@ -7,7 +7,7 @@
 
 import java.util.*;
 
-public class Attack extends RenderText {
+public class Attack extends Tools {
 
 	// Information about each attack -> Constants
 	final String name;
@@ -17,7 +17,7 @@ public class Attack extends RenderText {
 
 	private Tools tools = new Tools();
 
-	public Attack(String name, int cost, int damage, String special) {
+	public Attack (String name, int cost, int damage, String special) {
 		this.name    = name;
 		this.cost    = cost;
 		this.damage  = damage;
@@ -30,7 +30,7 @@ public class Attack extends RenderText {
 	 * @param predator     Pokemon object of attacking pokemon
 	 * @param prey         Pokemon object of defending pokemon
 	 */
-	public void attack(Pokemon predator, Pokemon prey) {
+	public void attack (Pokemon predator, Pokemon prey) {
 
 		// Stores attack damage factoring in all conditions
 		int attackPower = damage;
