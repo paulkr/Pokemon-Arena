@@ -15,16 +15,16 @@ public class PokemonArena extends Tools {
 
 	public static void main (String[] args) {
 
-		// gameIntro();
+		gameIntro();
 
 		selectPokemon();
 		
 
 		// for testing
-		pokemonTeam.add(pokeLot.pokemons.get(0));
-		pokemonTeam.add(pokeLot.pokemons.get(1));
-		pokemonTeam.add(pokeLot.pokemons.get(2));
-		pokemonTeam.add(pokeLot.pokemons.get(3));
+		// pokemonTeam.add(pokeLot.pokemons.get(0));
+		// pokemonTeam.add(pokeLot.pokemons.get(1));
+		// pokemonTeam.add(pokeLot.pokemons.get(2));
+		// pokemonTeam.add(pokeLot.pokemons.get(3));
 
 
 
@@ -106,11 +106,13 @@ public class PokemonArena extends Tools {
 		}
 
 		// Display user's Pokemon team
-		delayedCharPrint("Awesome job! Here is your team", 40);	
 
-		for (int i = 0; i < pokemonTeam.size(); i++) {
-			System.out.println(pokemonTeam.get(i).toString());
-		}
+		listOptions(new String[] {
+			pokemonTeam.get(0).toString(),
+			pokemonTeam.get(1).toString(),
+			pokemonTeam.get(2).toString(),
+			pokemonTeam.get(3).toString(),
+		}, "Awesome job! Here is your team\n");
 
 		sleep(500);
 		delayedCharPrint("Get ready to fight!", 35);
@@ -153,7 +155,7 @@ public class PokemonArena extends Tools {
 		boolean isWinnning  = true;
 		int curAttack;
 
-		delayedCharPrint(String.format("A wild %s appears! Get ready to fight!", enemy.toString()), 40);
+		delayedCharPrint(String.format("A wild %s appears! Get ready to fight!\n", enemy.toString()), 40);
 
 		Pokemon userPokemon = choseFromTeam();
 
