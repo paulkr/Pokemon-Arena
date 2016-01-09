@@ -15,8 +15,6 @@ public class Attack extends Tools {
 	final int damage;
 	final String special;
 
-	private Tools tools = new Tools();
-
 	public Attack (String name, int cost, int damage, String special) {
 		this.name    = name;
 		this.cost    = cost;
@@ -67,7 +65,7 @@ public class Attack extends Tools {
 				prey.hp -= attackPower; // Attack
 
 				// 50% chance of success to stun
-				if (tools.randChoice()) {
+				if (randChoice()) {
 					prey.isStunned = true;
 					delayedCharPrint(String.format("%s has been stunned!", prey.name), 40);
 				}
@@ -77,7 +75,7 @@ public class Attack extends Tools {
 			case "WILD CARD":
 
 				// 50% chance to land successful attack
-				if (tools.randChoice()) {
+				if (randChoice()) {
 					prey.hp -= attackPower;
 					delayedCharPrint(String.format("You dealt %d damage to %s!", attackPower, prey.name), 40);
 				} else {
@@ -88,7 +86,7 @@ public class Attack extends Tools {
 
 			case "WILD STORM":
 
-				while (tools.randChoice()) {
+				while (randChoice()) {
 					prey.hp -= attackPower; // Attack
 					delayedCharPrint(String.format("You dealt %d damage to %s!", attackPower, prey.name), 40);
 				}

@@ -11,14 +11,23 @@ public class PokemonArena extends Tools {
 
 	private static PokemonCollection pokeLot      = new PokemonCollection();
 	private static ArrayList<Pokemon> pokemonTeam = new ArrayList<Pokemon>();
-	private static ASCII displayArt               = new ASCII();
 	private static Scanner stdin                  = new Scanner(System.in);
 
 	public static void main (String[] args) {
 
-		// gameIntro();
+		gameIntro();
 
-		selectPokemon();
+		// selectPokemon();
+		
+
+		// for testing
+		pokemonTeam.add(pokeLot.pokemons.get(0));
+		pokemonTeam.add(pokeLot.pokemons.get(1));
+		pokemonTeam.add(pokeLot.pokemons.get(2));
+		pokemonTeam.add(pokeLot.pokemons.get(3));
+
+
+
 
 		boolean winning = true;
 
@@ -44,7 +53,7 @@ public class PokemonArena extends Tools {
 	 */
 	public static void gameIntro () {
 		// Display titles
-		displayArt.introTitle();
+		ASCII.introTitle();
 		clearConsole();
 
 		// Prompt for enter to be pressed

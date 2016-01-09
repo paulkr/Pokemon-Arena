@@ -45,6 +45,11 @@ public class Pokemon {
 		return hp > 0;
 	}
 
+
+
+
+
+
 	/**
 	 * Resets Pokemon stats at the end of a battle
 	 */
@@ -52,18 +57,13 @@ public class Pokemon {
 
 	}
 
-
 	/**
 	 * Returns statistics about Pokemon
 	 * 
-	 * @return     String[] with hp and energy
+	 * @return     String with hp and energy
 	 */
-	public int[] stats () {
-
-		// SHOULD GIVE AWAY RESISTANCE AND WEAKNESS TOO?
-
-		return new int[] { hp, energy };
-
+	public String stats () {
+		return String.format("HP: %d\nENERGY: %d", hp, energy);
 	}
 
 	/**

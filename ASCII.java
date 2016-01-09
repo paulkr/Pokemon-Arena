@@ -8,7 +8,7 @@
 public class ASCII extends Tools {
 
 	// Main pokemon title
-	private String[] pokeTitle = { 
+	private static String[] pokeTitle = { 
 		"                               .::.                           ",
 		"                              .;:**'                          ",
 		"                              `                               ",
@@ -25,7 +25,7 @@ public class ASCII extends Tools {
 	};
 
 	// Author subtitle text
-	private String[] pokeSubtitle = {
+	private static String[] pokeSubtitle = {
 		"                     ____             _   _  _      ",
 		"                    |  _ \\ __ _ _   _| | | |/ /    ",
 		"                    | |_) / _` | | | | | | ' /      ",
@@ -34,7 +34,7 @@ public class ASCII extends Tools {
 	};
 
 	// Congratulations (winner) text
-	private String[] congrats = {
+	private static String[] congrats = {
 		" _____                             _         _       _   _                 _           ",
 		"/  __ \\                           | |       | |     | | (_)               | |         ",
 		"| /  \\/ ___  _ __   __ _ _ __ __ _| |_ _   _| | __ _| |_ _  ___  _ __  ___| |         ",
@@ -46,7 +46,7 @@ public class ASCII extends Tools {
 	};
 
 	// You lose (loser) text
-	private String[] loser = {
+	private static String[] loser = {
 		"__   __            _                    _         ",
 		"\\ \\ / /           | |                  | |      ",
 		" \\ V /___  _   _  | |     ___  ___  ___| |       ",
@@ -60,7 +60,7 @@ public class ASCII extends Tools {
 	/**
 	 * Introduction title
 	 */
-	public void introTitle () {
+	public static void introTitle () {
 		delayedLinePrint(pokeTitle, 40);
 		sleep(700);
 		delayedLinePrint(pokeSubtitle, 40);
@@ -71,11 +71,28 @@ public class ASCII extends Tools {
 	}
 
 	/**
+	 * Prints Pokemon ASCII based on name from data file
+	 * 
+	 * @param name     Name of Pokemon
+	 */
+	public static void printPokemon (String name) {
+
+		Scanner inFile;
+
+		try {
+			inFile = new Scanner(new BufferedReader(new FileReader(String.format("resources/%s.txt", name))));
+		} catch(IOException e) {
+			delayedCharPrints(String.format("Sorry, no image for %s is available!", name));
+		}
+
+	}
+
+	/**
 	 * ASCII Art for winning or losing
 	 * 
 	 * @param won     Boolean to see if user won or not
 	 */
-	public void gameOver (boolean won) {
+	public static void gameOver (boolean won) {
 		if (won) {
 			delayedLinePrint(congrats, 40);
 			sleep(700);
