@@ -5,6 +5,9 @@
  *  @author Paul Krishnamurthy
  */
 
+import java.util.*;
+import java.io.*;
+
 public class ASCII extends Tools {
 
 	// Main pokemon title
@@ -77,13 +80,20 @@ public class ASCII extends Tools {
 	 */
 	public static void printPokemon (String name) {
 
-		Scanner inFile;
+		Scanner inFile = null;
 
 		try {
-			inFile = new Scanner(new BufferedReader(new FileReader(String.format("resources/%s.txt", name))));
+			inFile = new Scanner(new BufferedReader(new FileReader(String.format("resources/PokemonArt/%s.txt", name))));
 		} catch(IOException e) {
-			delayedCharPrints(String.format("Sorry, no image for %s is available!", name));
+			delayedCharPrint(String.format("Sorry, no image for %s is available!", name), 40);
 		}
+
+		while (inFile.hasNextLine()) {
+			String curLine = inFile.nextLine();
+			delayedCharPrint(curLine, 1);
+		}
+
+		inFile.close();
 
 	}
 

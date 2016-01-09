@@ -15,9 +15,9 @@ public class PokemonArena extends Tools {
 
 	public static void main (String[] args) {
 
-		gameIntro();
+		// gameIntro();
 
-		// selectPokemon();
+		selectPokemon();
 		
 
 		// for testing
@@ -57,8 +57,7 @@ public class PokemonArena extends Tools {
 		clearConsole();
 
 		// Prompt for enter to be pressed
-		System.out.println("Press [enter] to start...");
-		getString("enter");
+		getString("enter", "Press [enter] to start...", false);
 		clearConsole();
 
 		// Welcome message
@@ -87,13 +86,23 @@ public class PokemonArena extends Tools {
 			int selectedPokemonIndex = getInt(1, pokeLot.pokemons.size(), "Enter number: ");
 			Pokemon selectedPokemon = pokeLot.pokemons.get(selectedPokemonIndex - 1);
 
-			// Add to the pokemon team and remove from the options
-			pokemonTeam.add(selectedPokemon);
-			pokeLot.removePokemon(selectedPokemon.toString());
+			// Print Pokemon details
+			ASCII.printPokemon(selectedPokemon.toString());
+			selectedPokemon.stats();
 
-			delayedCharPrint("You selected: " + selectedPokemon.toString(), 40);
+			// Yes/No confirmation to choose Pokemon
+			String confirmation = getString("", String.format("Would you like to choose %s [y/n]? ", selectedPokemon.toString()), true);
 
-			chosen ++;
+			if (confirmation.toLowerCase().equals("y")) {
+				// Add to the pokemon team and remove from the options
+				pokemonTeam.add(selectedPokemon);
+				pokeLot.removePokemon(selectedPokemon.toString());
+
+				delayedCharPrint(String.format("\nYou selected: %s!\n",selectedPokemon.toString()), 40);
+
+				chosen ++;
+			}
+
 		}
 
 		// Display user's Pokemon team

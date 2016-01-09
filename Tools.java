@@ -73,12 +73,12 @@ public class Tools {
 			// Display two Pokemon names side-by-side
 			if (i + 1 < limit) {
 				if (i > 9) {
-					delayedCharPrint(String.format("| %d. %10s | %d. %10s |", (i + 1), pokemons.get(i).name, (i + 2), pokemons.get(i + 1).name), 4);
+					delayedCharPrint(String.format("| %d. %10s | %d. %10s |", (i + 1), pokemons.get(i).toString(), (i + 2), pokemons.get(i + 1).toString()), 4);
 				} else {
 					if (i == 8) {
-						delayedCharPrint(String.format("| %d. %11s | %d. %10s |", (i + 1), pokemons.get(i).name, (i + 2), pokemons.get(i + 1).name), 4);
+						delayedCharPrint(String.format("| %d. %11s | %d. %10s |", (i + 1), pokemons.get(i).toString(), (i + 2), pokemons.get(i + 1).toString()), 4);
 					} else {
-						delayedCharPrint(String.format("| %d. %11s | %d. %11s |", (i + 1), pokemons.get(i).name, (i + 2), pokemons.get(i + 1).name), 4);
+						delayedCharPrint(String.format("| %d. %11s | %d. %11s |", (i + 1), pokemons.get(i).toString(), (i + 2), pokemons.get(i + 1).toString()), 4);
 					}
 				}
 				i += 1;
@@ -86,10 +86,10 @@ public class Tools {
 			// Display a row with only 1 Pokemon name
 			} else {
 				if (i > 9) {
-					delayedCharPrint(String.format("| %d. %10s |", (i + 1), pokemons.get(i).name), 4);
+					delayedCharPrint(String.format("| %d. %10s |", (i + 1), pokemons.get(i).toString()), 4);
 					System.out.println("+----------------+");
 				} else {
-					delayedCharPrint(String.format("| %d. %11s |", (i + 1), pokemons.get(i).name), 4);
+					delayedCharPrint(String.format("| %d. %11s |", (i + 1), pokemons.get(i).toString()), 4);
 					System.out.println("+----------------+");
 				}
 				break;
@@ -124,10 +124,17 @@ public class Tools {
 	 * Method to get a string input
 	 * 
 	 * @param  toFind     Used to check if checking for enter pressed
+	 * @param  inline     Boolean to invoke new line
 	 * @return            Input string
 	 */
-	public static String getString (String toFind) {
+	public static String getString (String toFind, String message, boolean inline) {
 		String output = "";
+
+		if (inline) {
+			System.out.print(message);
+		} else {
+			delayedCharPrint(message, 30);
+		}
 		
 		if (toFind.equals("enter")) {
 			// Mask input to appear as only enter was pressed

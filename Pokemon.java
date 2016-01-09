@@ -7,7 +7,7 @@
 
 import java.util.*;
 
-public class Pokemon {
+public class Pokemon extends Tools {
 
 	int hp, energy;
 
@@ -45,11 +45,6 @@ public class Pokemon {
 		return hp > 0;
 	}
 
-
-
-
-
-
 	/**
 	 * Resets Pokemon stats at the end of a battle
 	 */
@@ -58,12 +53,18 @@ public class Pokemon {
 	}
 
 	/**
-	 * Returns statistics about Pokemon
+	 * Prints statistics about Pokemon in a nice table
 	 * 
 	 * @return     String with hp and energy
 	 */
-	public String stats () {
-		return String.format("HP: %d\nENERGY: %d", hp, energy);
+	public void stats () {
+		delayedLinePrint(new String[] {
+			"\n+----------------------------------------------+",
+			"|                    STATS                     |",
+			"+==============================================+",
+			String.format("| HP: %5d | ENERGY: %5d | TYPE: %10s |", hp, energy, type.toUpperCase()),
+			"+----------------------------------------------+\n"
+		}, 20);
 	}
 
 	/**
