@@ -15,18 +15,16 @@ public class PokemonArena extends Tools {
 
 	public static void main (String[] args) {
 
-		gameIntro();
+		// gameIntro();
 
-		selectPokemon();
+		// selectPokemon();
 		
 
-		// for testing
-		// pokemonTeam.add(pokeLot.pokemons.get(0));
-		// pokemonTeam.add(pokeLot.pokemons.get(1));
-		// pokemonTeam.add(pokeLot.pokemons.get(2));
-		// pokemonTeam.add(pokeLot.pokemons.get(3));
-
-
+		// Static team for testing
+		pokemonTeam.add(pokeLot.pokemons.get(0));
+		pokemonTeam.add(pokeLot.pokemons.get(1));
+		pokemonTeam.add(pokeLot.pokemons.get(2));
+		pokemonTeam.add(pokeLot.pokemons.get(3));
 
 
 		boolean winning = true;
@@ -86,9 +84,9 @@ public class PokemonArena extends Tools {
 			int selectedPokemonIndex = getInt(1, pokeLot.pokemons.size(), "Enter number: ");
 			Pokemon selectedPokemon = pokeLot.pokemons.get(selectedPokemonIndex - 1);
 
-			// Print Pokemon details
+			// Print Pokemon and details
 			ASCII.printPokemon(selectedPokemon.toString());
-			selectedPokemon.stats();
+			selectedPokemon.stats(true);
 
 			// Yes/No confirmation to choose Pokemon
 			String confirmation = getString("", String.format("Would you like to choose %s [y/n]? ", selectedPokemon.toString()), true);
@@ -145,6 +143,32 @@ public class PokemonArena extends Tools {
 	}
 
 	/**
+	 * Select battle action
+	 * 
+	 * @return     Selected action
+	 */
+	public static int selectAction () {
+		// List options
+		listOptions(new String[] {
+			"Attack",
+			"Retreat",
+			"Pass",
+			"Back",
+			"Help"
+		}, "\nSelect your action!");
+
+		// Get and return selection
+		int curAction = getInt(1, 5, "\nEnter number: ");
+		return curAction;
+	}
+
+	public static void enemyAttack (Pokemon user, Pokemon enemy) {
+
+		delayedCharPrint("ENEMY ATTACKINGGGGG", 30);
+
+	}
+
+	/**
 	 * Battle sequence with one enemy
 	 * 
 	 * @param  enemy     Pokemon enemy object
@@ -153,11 +177,12 @@ public class PokemonArena extends Tools {
 	public static boolean battleSequence (Pokemon enemy, String starter) {
 
 		boolean isWinnning  = true;
-		int curAttack;
+		int curAction;
 
 		delayedCharPrint(String.format("A wild %s appears! Get ready to fight!\n", enemy.toString()), 40);
 
 		Pokemon userPokemon = choseFromTeam();
+
 
 		while (userPokemon.isAlive()) {
 
@@ -165,57 +190,70 @@ public class PokemonArena extends Tools {
 			if (starter.equals("user")) {
 				System.out.println("user attack");
 
-				// List options
-				listOptions(new String[] {
-					"Attack",
-					"Retreat",
-					"Pass",
-					"Back"
-				}, "\nSelect your action!");
+				while (true) {
+					// List options
+					listOptions(new String[] {
+						"Attack",
+						"Retreat",
+						"Pass",
+						"Stats",
+						"View",
+						"Help"
+					}, "\nSelect your action!");
 
-				curAttack = getInt(1, 4, "\nEnter number: ");
+					curAction = getInt(1, 6, "\nEnter number: ");
 
-				switch (curAttack) {
+					switch (curAction) {
 
-					// Attack
-					case 1:
-						while (true) {
-
-							delayedCharPrint("Press 0 to go back.", 30);
+						// Attack
+						case 1:
+							System.out.println("You selected atttack");
+							// allow go back here
+		
 
 							int attackCount = userPokemon.attacks.size();
-							int selection = getInt(0, attackCount, "\nEnter number: ");
+							int selection = getInt(1, attackCount, "\nEnter number: ");
 
-							if (selection == 0) {
-								break;
-							}
+							delayedCharPrint(selection+"", 20);
+							break;
 
-						}
 
-						break;
+						// Retreat (switch pokemon)
+						case 2:
+							System.out.println("You selected retreat");
+							userPokemon = choseFromTeam();
+							enemyAttack(userPokemon, enemy);
+							break;
 
-					// Retreat
-					case 2:
-						System.out.println("You selected retreat");
-						break;
+						// Pass (nothing happens)
+						case 3:
+							System.out.println("You selected pass");
+							enemyAttack(userPokemon, enemy);
+							break;
 
-					// Pass
-					case 3:
-						System.out.println("You selected pass");
-						break;
+						// Stats
+						case 4:
+							System.out.println("You selected stats");
+							userPokemon.stats(false);
+							break;
 
-					// Back
-					case 4:
-						userPokemon = choseFromTeam();
-						break;
+						// View
+						case 5:
+							ASCII.printPokemon(userPokemon.toString());
+							break;
 
+						// Help
+						case 6:
+							System.out.println("You selected help");
+							Tools.help();
+							break;
+					}
 				}
 
 
 			// Enemy attack
 			} else {
 				System.out.println("enemy attack");
-
 
 			}
 

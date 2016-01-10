@@ -54,17 +54,22 @@ public class Pokemon extends Tools {
 
 	/**
 	 * Prints statistics about Pokemon in a nice table
-	 * 
-	 * @return     String with hp and energy
+	 *
+	 * @param fancy     Boolean if table should be printed
+	 * @return          String with hp and energy
 	 */
-	public void stats () {
-		delayedLinePrint(new String[] {
-			"\n+----------------------------------------------+",
-			"|                    STATS                     |",
-			"+==============================================+",
-			String.format("| HP: %5d | ENERGY: %5d | TYPE: %10s |", hp, energy, type.toUpperCase()),
-			"+----------------------------------------------+\n"
-		}, 20);
+	public void stats (boolean fancy) {
+		if (fancy) {
+			delayedLinePrint(new String[] {
+				"\n+----------------------------------------------+",
+				"|                    STATS                     |",
+				"+==============================================+",
+				String.format("| HP: %5d | ENERGY: %5d | TYPE: %10s |", hp, energy, type.toUpperCase()),
+				"+----------------------------------------------+\n"
+			}, 20);
+		} else {
+			delayedCharPrint(String.format("\nHP: %d\nENERGY: %d\nTYPE: %s", hp, energy, type.toUpperCase()), 30);
+		}
 	}
 
 	/**

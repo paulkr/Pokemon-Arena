@@ -109,12 +109,12 @@ public class Tools {
 
 		delayedCharPrint(message, 30);
 
-		delayedCharPrint("+---------------------------------+", 5);
+		System.out.println("+---------------------------------+");
 		for (int i = 0; i < limit; i++) {
 			if (i + 1 < limit) {
-				delayedCharPrint(String.format("| %d. %11s | %d. %11s |", (i + 1), options[i], (i + 2), options[i + 1]), 40);
+				delayedCharPrint(String.format("| %d. %11s | %d. %11s |", (i + 1), options[i], (i + 2), options[i + 1]), 5);
 				i += 1;
-				delayedCharPrint("+---------------------------------+", 5);
+				System.out.println("+---------------------------------+");
 			}
 		}
 
@@ -207,6 +207,19 @@ public class Tools {
 				System.out.println();
 			}
 		}
+	}
+
+	/**
+	 * Displays command options in a help menu
+	 */
+	public static void help () {
+		delayedLinePrint(new String[] {
+			"1. ATTACK  - Attack the enemy",
+			"2. RETREAT - Switch your Pokemon",
+			"3. PASS    - Skip your turn",
+			"4. STATS   - View Pokemon statistics",
+			"5. VIEW    - View picture of Pokemon"
+		}, 20);
 	}
 
 }
