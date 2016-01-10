@@ -8,5 +8,8 @@ A text-based Pokemon battle game.
 TODO
 ----
 
-- [ ] Go back on selections during battles
-- [ ] Attack feature
+- [ ] Attack feature for user
+- [ ] Attack feature for enemy
+- [ ] Move java files to lib folder
+- [ ] Update javadocs
+- [ ] Create methods for special attacks in Pokemon object
