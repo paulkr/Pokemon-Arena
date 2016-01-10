@@ -3,12 +3,10 @@ Pokemon Arena
 
 A text-based Pokemon battle game.
 
+[Pokemon Arena!](https://media.giphy.com/media/ad61Yj7eBAiNG/giphy.gif)
+
 TODO
 ----
 
-- [ ] Get Pokemon ascii art
-- [ ] Show image of Pokemon during selection + battle
 - [ ] Go back on selections during battles
 - [ ] Attack feature
-- [ ] Retreat feature
-- [ ] Pass feature

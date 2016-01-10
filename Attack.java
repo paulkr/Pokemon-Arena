@@ -50,10 +50,10 @@ public class Attack extends Tools {
 
 		// If the attacker has a weakness
 		if (predator.type.equals(prey.resistance)) {
-			delayedCharPrint(String.format("Oh no! %s is resistant to %s! You're attack was not that effective!", prey.name, name), 40);
+			delayedCharPrint(String.format("Oh no! %s is resistant to %s!\n You're attack was not that effective!", prey.name, name), 40);
 			attackPower /= 2; // Cut attack power in half
 		} else if (predator.type.equals(prey.weakness)) {
-			delayedCharPrint(String.format("Lucky you! %s has a weakness to %s! You're attack was very effective!", prey.name, name), 40);
+			delayedCharPrint(String.format("Lucky you! %s has a weakness to %s!\n You're attack was very effective!", prey.name, name), 40);
 			attackPower *= 2; // Double the attack power
 		}
 		

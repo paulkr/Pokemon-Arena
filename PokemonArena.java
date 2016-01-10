@@ -162,7 +162,13 @@ public class PokemonArena extends Tools {
 		return curAction;
 	}
 
-	public static void enemyAttack (Pokemon user, Pokemon enemy) {
+	/**
+	 * Enemy attack sequence
+	 * 
+	 * @param enemy     Enemy Pokemon object
+	 * @param user      User Pokemon object
+	 */
+	public static void enemyAttack (Pokemon enemy, Pokemon user) {
 
 		delayedCharPrint("ENEMY ATTACKINGGGGG", 30);
 
@@ -182,7 +188,6 @@ public class PokemonArena extends Tools {
 		delayedCharPrint(String.format("A wild %s appears! Get ready to fight!\n", enemy.toString()), 40);
 
 		Pokemon userPokemon = choseFromTeam();
-
 
 		while (userPokemon.isAlive()) {
 
@@ -207,28 +212,47 @@ public class PokemonArena extends Tools {
 
 						// Attack
 						case 1:
-							System.out.println("You selected atttack");
-							// allow go back here
-		
+							while (true) {
+								delayedCharPrint("ENTER < 0 > TO GO BACK\n", 30);
+								delayedCharPrint("Select an attack! Here are your options:\n", 30);
+			
+								userPokemon.listAttacks(); // Display attack options
 
-							int attackCount = userPokemon.attacks.size();
-							int selection = getInt(1, attackCount, "\nEnter number: ");
+								// Get attack
+								int attackCount = userPokemon.attacks.size();
+								int selection = getInt(0, attackCount, "\nEnter number: ");
 
-							delayedCharPrint(selection+"", 20);
+								if (selection == 0) {
+									break;
+								}
+
+								// Try to attack
+								Attack curAttack = userPokemon.attacks.get(selection - 1);
+								if (userPokemon.canAfford(curAttack)) {
+									curAttack.attack(userPokemon, enemy);
+
+									userPokemon.reset();
+									enemyAttack(enemy, userPokemon);
+									break;
+								} else {
+									delayedCharPrint("\nYou cannot affort that attack!", 30);
+								}
+
+							}
+
 							break;
-
 
 						// Retreat (switch pokemon)
 						case 2:
 							System.out.println("You selected retreat");
 							userPokemon = choseFromTeam();
-							enemyAttack(userPokemon, enemy);
+							enemyAttack(enemy, userPokemon);
 							break;
 
 						// Pass (nothing happens)
 						case 3:
 							System.out.println("You selected pass");
-							enemyAttack(userPokemon, enemy);
+							enemyAttack(enemy, userPokemon);
 							break;
 
 						// Stats
@@ -250,15 +274,10 @@ public class PokemonArena extends Tools {
 					}
 				}
 
-
 			// Enemy attack
 			} else {
-				System.out.println("enemy attack");
-
+				enemyAttack(enemy, userPokemon);
 			}
-
-			// Switch turn
-			starter = starter.equals("user") ? "enemy" : "user";
 
 		}
 
