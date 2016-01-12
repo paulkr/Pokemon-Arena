@@ -21,6 +21,8 @@ public class Pokemon extends Tools {
 	boolean isStunned = false;  // Boolean if Pokemon's state is stunned
 	boolean isDisabled = false; // Boolean if Pokemon's state is disabled
 
+	public Random rand = new Random();
+
 	// Constructs new Pokemon object
 	public Pokemon (String name, int hp, String type, String resistance, String weakness, ArrayList<Attack> attacks) {
 		this.name       = name;
@@ -45,7 +47,7 @@ public class Pokemon extends Tools {
 				String.format("%d. %s", (i + 1), attacks.get(i).name),
 				String.format("COST    : %s", attacks.get(i).cost),
 				String.format("DAMAGE  : %s", attacks.get(i).damage),
-				String.format("SPECIAL : %s", attacks.get(i).special.equals("") ? "NONE" : attacks.get(i).special.toUpperCase())	
+				String.format("SPECIAL : %s\n", attacks.get(i).special.equals("") ? "NONE" : attacks.get(i).special.toUpperCase())	
 			}, 20);
 		}
 	}
@@ -61,6 +63,34 @@ public class Pokemon extends Tools {
 	}
 
 	/**
+	 * Generate all attacks Pokemon can afford
+	 * 
+	 * @return     ArrayList of attacks
+	 */
+	public ArrayList<Attack> affordableAttacks () {
+		// ArrayList of affordable attacks
+		ArrayList<Attack> affordable = new ArrayList<Attack>();
+
+		for (int i = 0; i < attacks.size(); i++) {
+			if (canAfford(attacks.get(i))) {
+				affordable.add(attacks.get(i));
+			}
+		}
+
+		return affordable;
+	}
+
+	/**
+	 * Chooses random, affordable attack
+	 * 
+	 * @return     Random attack
+	 */
+	public Attack randomAttack () {
+		ArrayList<Attack> affordables = affordableAttacks();
+		return affordables.get(rand.nextInt(affordables.size()));
+	}
+
+	/**
 	 * Checks if Pokemon is alive
 	 * 
 	 * @return     Returns true if Pokemon has more than 0 hp
@@ -70,9 +100,10 @@ public class Pokemon extends Tools {
 	}
 
 	/**
-	 * Resets Pokemon stats at the end of a battle
+	 * Resets Pokemon stats at the end of a turn
 	 */
-	public void reset () {
+	public void resetTurn () {
+		// Add 10 energy to a maximum of 50
 		energy = Math.min(50, energy + 10);
 	}
 
@@ -88,11 +119,11 @@ public class Pokemon extends Tools {
 				"\n+----------------------------------------------+",
 				"|                    STATS                     |",
 				"+==============================================+",
-				String.format("| HP: %5d | ENERGY: %5d | TYPE: %10s |", hp, energy, type.toUpperCase()),
+				String.format("| HP: %5d | ENERGY : %5d | TYPE: %10s |", hp, energy, type.toUpperCase()),
 				"+----------------------------------------------+\n"
 			}, 20);
 		} else {
-			delayedCharPrint(String.format("\nHP: %d\nENERGY: %d\nTYPE: %s", hp, energy, type.toUpperCase()), 30);
+			delayedCharPrint(String.format("\nPOKEMON : %s\nHP      : %d\nENERGY  : %d\nTYPE    : %s", name, hp, energy, type.toUpperCase()), 30);
 		}
 	}
 

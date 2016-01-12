@@ -12,6 +12,8 @@ public class PokemonCollection {
 
 	// ArrayList to hold all pokemon
 	public ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
+	
+	public Random rand                 = new Random();
 
 	// Slice data file in the constructor
 	public PokemonCollection () {
@@ -82,7 +84,6 @@ public class PokemonCollection {
 	 * @return selected     Randomly selected Pokemon object
 	 */
 	public Pokemon randomPokemon () {
-		Random rand = new Random();
 		// Select a random Pokemon and remove it from pokemons ArrayList
 		Pokemon selected = pokemons.get(rand.nextInt(pokemons.size()));
 		removePokemon(selected.name);

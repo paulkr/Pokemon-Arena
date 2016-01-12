@@ -34,6 +34,7 @@ public class PokemonArena extends Tools {
 
 			// Randomly select if user or computer goes first
 			String starter = randChoice() ? "user" : "enemy";
+			System.out.println("STARTER: "+starter);
 			winning = battleSequence(pokeLot.randomPokemon(), starter);
 
 		}
@@ -137,41 +138,58 @@ public class PokemonArena extends Tools {
 		int pokeIndex = getInt(1, 4, "\nEnter your number: ");
 		Pokemon curPokemon = pokemonTeam.get(pokeIndex - 1);
 
-		delayedCharPrint(String.format("%s, I choose you!", curPokemon.toString()), 30);
+		delayedCharPrint(String.format("%s, I choose you!\n", curPokemon.toString()), 30);
 
 		return curPokemon;
 	}
 
 	/**
-	 * Select battle action
-	 * 
-	 * @return     Selected action
-	 */
-	public static int selectAction () {
-		// List options
-		listOptions(new String[] {
-			"Attack",
-			"Retreat",
-			"Pass",
-			"Back",
-			"Help"
-		}, "\nSelect your action!");
-
-		// Get and return selection
-		int curAction = getInt(1, 5, "\nEnter number: ");
-		return curAction;
-	}
-
-	/**
 	 * Enemy attack sequence
 	 * 
-	 * @param enemy     Enemy Pokemon object
-	 * @param user      User Pokemon object
+	 * @param  enemy       Enemy Pokemon object
+	 * @param  user        User Pokemon object
 	 */
 	public static void enemyAttack (Pokemon enemy, Pokemon user) {
 
 		delayedCharPrint("ENEMY ATTACKINGGGGG", 30);
 
+		if (!enemy.isStunned) {
+			if (enemy.affordableAttacks().size() > 0) {
+				Attack randEnemyAttack = enemy.randomAttack();
+				randEnemyAttack.attack(enemy, user);
+				enemy.resetTurn();
+			} else {
+				delayedCharPrint("Enemy passes", 30);
+			}
+		} else {
+			delayedCharPrint("The enemy is stunned!", 30);
+			enemy.isStunned = false; // Unstun enemy
+		}
+
+	}
+
+	/**
+	 * Checks if user has any living Pokemon
+	 * 
+	 * @return     True if user has living Pokemon
+	 */
+	public static boolean livingPokemon (ArrayList<Pokemon> team) {
+		for (Pokemon p : team) {
+			if (p.isAlive()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static void resetAllPokemon (ArrayList<Pokemon> arr, Pokemon enemy) {
+		// End turn for all Pokemon on user's team
+		for (Pokemon p : arr) {
+			p.resetTurn();
+		}
+
+		// End enemy's turn
+		enemy.resetTurn();
 	}
 
 	/**
@@ -189,13 +207,17 @@ public class PokemonArena extends Tools {
 
 		Pokemon userPokemon = choseFromTeam();
 
-		while (userPokemon.isAlive()) {
+		// Loop while user and enemy Pokemon are alive
+		while (userPokemon.isAlive() && enemy.isAlive()) {
+
+			boolean moveOn = false;
 
 			// User attack
 			if (starter.equals("user")) {
 				System.out.println("user attack");
 
 				while (true) {
+
 					// List options
 					listOptions(new String[] {
 						"Attack",
@@ -228,31 +250,34 @@ public class PokemonArena extends Tools {
 
 								// Try to attack
 								Attack curAttack = userPokemon.attacks.get(selection - 1);
+
 								if (userPokemon.canAfford(curAttack)) {
 									curAttack.attack(userPokemon, enemy);
 
-									userPokemon.reset();
-									enemyAttack(enemy, userPokemon);
+									// enemyAttack(enemy, userPokemon);
+
 									break;
 								} else {
-									delayedCharPrint("\nYou cannot affort that attack!", 30);
+									delayedCharPrint(String.format("\nYou cannot affort that attack!\nIt costs %s!", curAttack.cost), 30);
 								}
 
 							}
 
+							moveOn = true;
 							break;
 
 						// Retreat (switch pokemon)
 						case 2:
 							System.out.println("You selected retreat");
 							userPokemon = choseFromTeam();
-							enemyAttack(enemy, userPokemon);
+							// enemyAttack(enemy, userPokemon);
+							moveOn = true;
 							break;
 
 						// Pass (nothing happens)
 						case 3:
 							System.out.println("You selected pass");
-							enemyAttack(enemy, userPokemon);
+							// enemyAttack(enemy, userPokemon);
 							break;
 
 						// Stats
@@ -272,11 +297,52 @@ public class PokemonArena extends Tools {
 							Tools.help();
 							break;
 					}
+
+					if (moveOn) {
+						break;
+					}
 				}
+
+				// Check if enemy is dead
+				if (!enemy.isAlive()) {
+					delayedCharPrint(String.format("%s has been defeated!", enemy.toString()), 30);
+					isWinnning = true;
+					break; // Exit loop
+				}
+
+				enemyAttack(enemy, userPokemon);
+
+				// Check if user is alive
+				if (!userPokemon.isAlive()) {
+					delayedCharPrint(String.format("%s has died!", userPokemon.toString()), 30);
+					isWinnning = false;
+
+					delayedCharPrint("REMOVIGN: "+userPokemon.toString(), 30);
+					pokemonTeam.remove(userPokemon);
+
+					if (livingPokemon(pokemonTeam)) {
+						isWinnning = true;
+						break;
+					}
+
+					if (isWinnning) {
+						// Choose new Pokemon
+						userPokemon = choseFromTeam();
+						moveOn = true;
+					} else {
+						delayedCharPrint("Oh no! All your Pokemon have died!", 30);
+						break;
+					}
+
+				}
+
+				resetAllPokemon(pokemonTeam, enemy);
+
 
 			// Enemy attack
 			} else {
 				enemyAttack(enemy, userPokemon);
+				moveOn = true;
 			}
 
 		}
