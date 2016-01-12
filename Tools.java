@@ -68,7 +68,7 @@ public class Tools {
 		int limit = pokemons.size(); // The number of Pokemon
 		// Display data in a formatted table
 		// Special formatting for spaces required for row with single and double digit numbers
-		System.out.println("+---------------------------------+");
+		System.out.println(limit != 1 ? "+---------------------------------+" : "+----------------+");
 		for (int i = 0; i < limit; i++) {
 			// Display two Pokemon names side-by-side
 			if (i + 1 < limit) {

@@ -105,9 +105,11 @@ public class ASCII extends Tools {
 	public static void gameOver (boolean won) {
 		if (won) {
 			delayedLinePrint(congrats, 40);
+			delayedCharPrint("You are the Trainer Supreme!", 40);
 			sleep(700);
 		} else {
 			delayedLinePrint(loser, 40);
+			delayedCharPrint("You are the Loser Supreme!", 40);
 			sleep(700);
 		}
 	}

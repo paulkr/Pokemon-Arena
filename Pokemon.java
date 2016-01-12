@@ -108,6 +108,14 @@ public class Pokemon extends Tools {
 	}
 
 	/**
+	 * Resets Pokemon stats at the end of a battle
+	 */
+	public void resetBattle () {
+		energy = 50;
+		hp     = Math.min(maxHP, hp + 20);
+	}
+
+	/**
 	 * Prints statistics about Pokemon in a nice table
 	 *
 	 * @param fancy     Boolean if table should be printed
