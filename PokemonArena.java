@@ -245,6 +245,7 @@ public class PokemonArena extends Tools {
 								int selection = getInt(0, attackCount, "\nEnter number: ");
 
 								if (selection == 0) {
+									moveOn = false;
 									break;
 								}
 
@@ -253,9 +254,7 @@ public class PokemonArena extends Tools {
 
 								if (userPokemon.canAfford(curAttack)) {
 									curAttack.attack(userPokemon, enemy);
-
-									// enemyAttack(enemy, userPokemon);
-
+									moveOn = true;
 									break;
 								} else {
 									delayedCharPrint(String.format("\nYou cannot affort that attack!\nIt costs %s!", curAttack.cost), 30);
@@ -263,21 +262,18 @@ public class PokemonArena extends Tools {
 
 							}
 
-							moveOn = true;
 							break;
 
 						// Retreat (switch pokemon)
 						case 2:
 							System.out.println("You selected retreat");
 							userPokemon = choseFromTeam();
-							// enemyAttack(enemy, userPokemon);
 							moveOn = true;
 							break;
 
 						// Pass (nothing happens)
 						case 3:
 							System.out.println("You selected pass");
-							// enemyAttack(enemy, userPokemon);
 							break;
 
 						// Stats
@@ -337,12 +333,15 @@ public class PokemonArena extends Tools {
 				}
 
 				resetAllPokemon(pokemonTeam, enemy);
+				moveOn = false;
+				break;
 
 
 			// Enemy attack
 			} else {
 				enemyAttack(enemy, userPokemon);
 				moveOn = true;
+				break;
 			}
 
 		}

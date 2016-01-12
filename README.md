@@ -13,3 +13,4 @@ TODO
 - [ ] Move java files to lib folder
 - [ ] Update javadocs
 - [ ] Create methods for special attacks in Pokemon object
+- [ ] Remove selected Pokemon from enemy options
