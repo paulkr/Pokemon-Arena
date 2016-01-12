@@ -213,6 +213,7 @@ public class Tools {
 	 * Displays command options in a help menu
 	 */
 	public static void help () {
+		// Print help menu faster
 		delayedLinePrint(new String[] {
 			"1. ATTACK  - Attack the enemy",
 			"2. RETREAT - Switch your Pokemon",

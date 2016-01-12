@@ -273,7 +273,8 @@ public class PokemonArena extends Tools {
 
 						// Pass (nothing happens)
 						case 3:
-							System.out.println("You selected pass");
+							delayedCharPrint("You passed your turn!", 30);
+							moveOn = true;
 							break;
 
 						// Stats
@@ -302,29 +303,71 @@ public class PokemonArena extends Tools {
 				// Check if enemy is dead
 				if (!enemy.isAlive()) {
 					delayedCharPrint(String.format("%s has been defeated!", enemy.toString()), 30);
+
+					// Remove enemy Pokemon
+					pokeLot.removePokemon(enemy.toString());
+
 					isWinnning = true;
 					break; // Exit loop
 				}
 
+				// enemyAttack(enemy, userPokemon);
+
+				// // Check if user is alive
+				// if (!userPokemon.isAlive()) {
+				// 	delayedCharPrint(String.format("%s has died!", userPokemon.toString()), 30);
+				// 	isWinnning = false;
+
+				// 	delayedCharPrint("REMOVIGN: "+userPokemon.toString(), 30);
+				// 	pokemonTeam.remove(userPokemon);
+
+				// 	if (livingPokemon(pokemonTeam)) {
+				// 		isWinnning = true;
+				// 		break;
+				// 	}
+
+				// 	if (isWinnning) {
+				// 	// Choose new Pokemon
+				// 		userPokemon = choseFromTeam();
+				// 		moveOn = false;
+				// 	} else {
+				// 		delayedCharPrint("Oh no! All your Pokemon have died!", 30);
+				// 		break;
+				// 	}
+
+				// }
+
+				// resetAllPokemon(pokemonTeam, enemy);
+				// moveOn = false;
+				// break;
+
+
+			// Enemy attack
+			} else {
+				System.out.println("ENEMY IF ATTACK!");
+				// enemyAttack(enemy, userPokemon);
+				// moveOn = true;
+				// break;
+
 				enemyAttack(enemy, userPokemon);
 
-				// Check if user is alive
+				// Check if user is dead
 				if (!userPokemon.isAlive()) {
 					delayedCharPrint(String.format("%s has died!", userPokemon.toString()), 30);
 					isWinnning = false;
 
-					delayedCharPrint("REMOVIGN: "+userPokemon.toString(), 30);
+					// Remove user Pokemon
 					pokemonTeam.remove(userPokemon);
 
 					if (livingPokemon(pokemonTeam)) {
 						isWinnning = true;
-						break;
 					}
 
 					if (isWinnning) {
 						// Choose new Pokemon
 						userPokemon = choseFromTeam();
-						moveOn = true;
+						moveOn = false;
+						continue;
 					} else {
 						delayedCharPrint("Oh no! All your Pokemon have died!", 30);
 						break;
@@ -332,17 +375,10 @@ public class PokemonArena extends Tools {
 
 				}
 
-				resetAllPokemon(pokemonTeam, enemy);
-				moveOn = false;
-				break;
-
-
-			// Enemy attack
-			} else {
-				enemyAttack(enemy, userPokemon);
-				moveOn = true;
-				break;
 			}
+
+			starter = starter.equals("user") ? "enemy" : "user";
+			System.out.println("next: "+starter);
 
 		}
 

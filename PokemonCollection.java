@@ -11,9 +11,9 @@ import java.io.*;
 public class PokemonCollection {
 
 	// ArrayList to hold all pokemon
-	public ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
+	public static ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
 	
-	public Random rand                 = new Random();
+	public static Random rand                 = new Random();
 
 	// Slice data file in the constructor
 	public PokemonCollection () {
@@ -47,7 +47,7 @@ public class PokemonCollection {
 	 * 
 	 * @param data     String line of data from the "resources/pokemon.txt" data file
 	 */
-	public void processLine (String data) {
+	public static void processLine (String data) {
 
 		String[] content          = data.split(",");
 		String name               = content[0];
@@ -83,7 +83,7 @@ public class PokemonCollection {
 	 * 
 	 * @return selected     Randomly selected Pokemon object
 	 */
-	public Pokemon randomPokemon () {
+	public static Pokemon randomPokemon () {
 		// Select a random Pokemon and remove it from pokemons ArrayList
 		Pokemon selected = pokemons.get(rand.nextInt(pokemons.size()));
 		removePokemon(selected.name);
@@ -95,7 +95,7 @@ public class PokemonCollection {
 	 * 
 	 * @param name     Name of pokemon
 	 */
-	public void removePokemon (String name) {
+	public static void removePokemon (String name) {
 		for (int i = 0; i < pokemons.size(); i++) {
 			if (pokemons.get(i).name.equals(name)) {
 				pokemons.remove(i);
