@@ -12,5 +12,3 @@ Building & Running
 $ cd lib
 $ java PokemonArena
 ```
-
->© 2016 Paul Krishnamurthy
