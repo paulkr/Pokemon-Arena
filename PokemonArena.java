@@ -99,7 +99,7 @@ public class PokemonArena extends Tools {
 			if (confirmation.toLowerCase().equals("y")) {
 				// Add to the pokemon team and remove from the options
 				pokemonTeam.add(selectedPokemon);
-				pokeLot.removePokemon(selectedPokemon.toString());
+				pokeLot.removePokemon(selectedPokemon);
 
 				delayedCharPrint(String.format("\nYou selected: %s!\n",selectedPokemon.toString()), 40);
 
@@ -130,6 +130,7 @@ public class PokemonArena extends Tools {
 	 * @return     The selected Pokemon
 	 */
 	public static Pokemon choseFromTeam () {
+
 		delayedLinePrint(new String[] {
 			"Select your Pokemon!",
 			"Here is your team:"
@@ -137,9 +138,7 @@ public class PokemonArena extends Tools {
 
 		listPokemon(pokemonTeam); // List all the Pokemon
 
-
 		// Select and return Pokemon
-
 		int pokeIndex = getInt(1, pokemonTeam.size(), "\nEnter your number: ");
 		Pokemon curPokemon = pokemonTeam.get(pokeIndex - 1);
 
@@ -155,8 +154,6 @@ public class PokemonArena extends Tools {
 	 * @param  user        User Pokemon object
 	 */
 	public static void enemyAttack (Pokemon enemy, Pokemon user) {
-
-		delayedCharPrint("ENEMY ATTACKINGGGGG", 30);
 
 		if (!enemy.isStunned) {
 			if (enemy.affordableAttacks().size() > 0) {
@@ -174,20 +171,12 @@ public class PokemonArena extends Tools {
 	}
 
 	/**
-	 * Checks if user has any living Pokemon
-	 * 
-	 * @return     True if user has living Pokemon
-	 */
-	public static boolean livingPokemon () {
-		return pokemonTeam.size() > 0;
-	}
-
-	/**
 	 * Reset Pokemon statistics every turn
 	 * 
 	 * @param enemy     Enemy Pokemon object
 	 */
 	public static void resetAllPokemon (Pokemon enemy) {
+
 		// End turn for all Pokemon on user's team
 		for (Pokemon p : pokemonTeam) {
 			p.resetTurn();
@@ -205,26 +194,30 @@ public class PokemonArena extends Tools {
 	 */
 	public static boolean battleSequence (Pokemon enemy, String starter) {
 
-		boolean isWinnning  = true;
-		int curAction;
+		boolean isWinnning  = true; // Boolean if user wins or loses battle
+
+		// Define types outside loop for efficiency
+		int curAction, attackCount, selection;
+		Attack curAttack;
 
 		delayedCharPrint(String.format("A wild %s appears! Get ready to fight!\n", enemy.toString()), 40);
 
-		Pokemon userPokemon = choseFromTeam();
+		Pokemon userPokemon = choseFromTeam(); // Select current Pokemon
 
-		delayedCharPrint(String.format("%s start's the battle!", (start.equals("user") ? userPokemon.toString() : enemy.toString())))
+		// Notify user of who starts
+		delayedCharPrint(String.format("%s start's the battle!\n", (starter.equals("user") ? userPokemon.toString() : enemy.toString())), 30);
 
 		// Loop while user and enemy Pokemon are alive
 		while (userPokemon.isAlive() && enemy.isAlive()) {
 
-			boolean moveOn = false;
+			boolean moveOn = false; // Used to break out of turn loops 
 
 			// User attack
 			if (starter.equals("user")) {
 
 				while (true) {
 
-					// List options
+					// List menu options
 					listOptions(new String[] {
 						"Attack",
 						"Retreat",
@@ -234,7 +227,7 @@ public class PokemonArena extends Tools {
 						"Help"
 					}, "\nSelect your action!");
 
-					curAction = getInt(1, 6, "\nEnter number: ");
+					curAction = getInt(1, 6, "\nEnter number: "); // Select option
 
 					switch (curAction) {
 
@@ -247,21 +240,24 @@ public class PokemonArena extends Tools {
 								userPokemon.listAttacks(); // Display attack options
 
 								// Get attack
-								int attackCount = userPokemon.attacks.size();
-								int selection = getInt(0, attackCount, "\nEnter number: ");
+								attackCount = userPokemon.attacks.size();
+								selection = getInt(0, attackCount, "\nEnter number: ");
 
+								// Go back
 								if (selection == 0) {
 									moveOn = false;
 									break;
 								}
 
 								// Try to attack
-								Attack curAttack = userPokemon.attacks.get(selection - 1);
+								curAttack = userPokemon.attacks.get(selection - 1);
 
+								// Try to attack enemy
 								if (userPokemon.canAfford(curAttack)) {
 									curAttack.attack(userPokemon, enemy);
 									moveOn = true;
 									break;
+
 								} else {
 									delayedCharPrint(String.format("\nYou cannot affort that attack!\nIt costs %s!", curAttack.cost), 30);
 								}
@@ -270,11 +266,11 @@ public class PokemonArena extends Tools {
 
 							break;
 
-						// Retreat (switch pokemon)
+						// Retreat (switch pokemon and end turn)
 						case 2:
-							System.out.println("You selected retreat");
+							delayedCharPrint("You retreated!\n", 30);
 							userPokemon = choseFromTeam();
-							moveOn = true;
+							moveOn = true; // Switch turns
 							break;
 
 						// Pass (nothing happens)
@@ -285,7 +281,6 @@ public class PokemonArena extends Tools {
 
 						// Stats
 						case 4:
-							System.out.println("You selected stats");
 							userPokemon.stats(false);
 							break;
 
@@ -296,7 +291,6 @@ public class PokemonArena extends Tools {
 
 						// Help
 						case 6:
-							System.out.println("You selected help");
 							Tools.help();
 							break;
 					}
@@ -308,29 +302,32 @@ public class PokemonArena extends Tools {
 
 				// Check if enemy is dead
 				if (!enemy.isAlive()) {
+
 					delayedCharPrint(String.format("The wild %s fainted!", enemy.toString()), 30);
 
 					// Remove enemy Pokemon
-					pokeLot.removePokemon(enemy.toString());
+					pokeLot.removePokemon(enemy);
 
 					isWinnning = true;
-					break; // Exit loop
+					break;
 				}
 
 			// Enemy attack
 			} else {
 
-				enemyAttack(enemy, userPokemon);
+				enemyAttack(enemy, userPokemon); // Enemy attacks user
 
 				// Check if user is fainted
 				if (!userPokemon.isAlive()) {
+
 					delayedCharPrint(String.format("%s fainted!", userPokemon.toString()), 30);
 					isWinnning = false;
 
 					// Remove user Pokemon
 					pokemonTeam.remove(userPokemon);
 
-					if (livingPokemon()) {
+					// If the user has Pokemon that have not fainted
+					if (pokemonTeam.size() > 0) {
 						isWinnning = true;
 					}
 
@@ -342,7 +339,7 @@ public class PokemonArena extends Tools {
 						continue;
 
 					} else {
-						delayedCharPrint("Oh no! All your Pokemon have died!", 30);
+						delayedCharPrint("Oh no! All your Pokemon have fainted!", 30);
 						return false; // 
 					}
 
@@ -351,11 +348,9 @@ public class PokemonArena extends Tools {
 			}
 
 			// End of a battle
-
 			resetAllPokemon(enemy); // Reset turn stats
+			starter = starter.equals("user") ? "enemy" : "user"; // Alternate turns
 
-
-			starter = starter.equals("user") ? "enemy" : "user";
 		}
 
 		return isWinnning;

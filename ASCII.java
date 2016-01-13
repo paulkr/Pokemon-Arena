@@ -84,7 +84,7 @@ public class ASCII extends Tools {
 
 		try {
 			inFile = new Scanner(new BufferedReader(new FileReader(String.format("resources/PokemonArt/%s.txt", name))));
-		} catch(IOException e) {
+		} catch (IOException e) {
 			delayedCharPrint(String.format("Sorry, no image for %s is available!", name), 40);
 		}
 

@@ -111,8 +111,9 @@ public class Pokemon extends Tools {
 	 * Resets Pokemon stats at the end of a battle
 	 */
 	public void resetBattle () {
+		// Reset energy to 50 and add 20 to hp
 		energy = 50;
-		hp     = Math.min(maxHP, hp + 20);
+		hp = Math.min(maxHP, hp + 20);
 	}
 
 	/**

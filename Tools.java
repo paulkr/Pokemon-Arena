@@ -20,11 +20,13 @@ public class Tools {
 	 * @param milliseconds    The duration, in milliseconds, to pause the program
 	 */
 	public static void sleep (long milliseconds) {
+
 		try {
 			Thread.sleep(milliseconds);
-		} catch(InterruptedException e) {
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+
 	}
 
 	/**
@@ -34,7 +36,9 @@ public class Tools {
 	 * @param  milliseconds     Duration to sleep in milliseconds
 	 */
 	public static void delayedCharPrint (String content, long milliseconds) {
+
 		for (int i = 0; i < content.length(); i++) {
+
 			// Don't sleep for spaces
 			if (content.charAt(i) == ' ') {
 				System.out.print(content.charAt(i));
@@ -43,7 +47,9 @@ public class Tools {
 				sleep(milliseconds);
 			}
 		}
+
 		System.out.println();
+
 	}
 
 	/**
@@ -65,13 +71,18 @@ public class Tools {
 	 * @param pokemons     ArrayList of Pokemon objects
 	 */
 	public static void listPokemon (ArrayList<Pokemon> pokemons) {
+
 		int limit = pokemons.size(); // The number of Pokemon
+
 		// Display data in a formatted table
 		// Special formatting for spaces required for row with single and double digit numbers
 		System.out.println(limit != 1 ? "+---------------------------------+" : "+----------------+");
+
 		for (int i = 0; i < limit; i++) {
+
 			// Display two Pokemon names side-by-side
 			if (i + 1 < limit) {
+
 				if (i > 9) {
 					delayedCharPrint(String.format("| %d. %10s | %d. %10s |", (i + 1), pokemons.get(i).toString(), (i + 2), pokemons.get(i + 1).toString()), 4);
 				} else {
@@ -81,10 +92,13 @@ public class Tools {
 						delayedCharPrint(String.format("| %d. %11s | %d. %11s |", (i + 1), pokemons.get(i).toString(), (i + 2), pokemons.get(i + 1).toString()), 4);
 					}
 				}
+
 				i += 1;
 				System.out.println("+---------------------------------+");
+
 			// Display a row with only 1 Pokemon name
 			} else {
+
 				if (i > 9) {
 					delayedCharPrint(String.format("| %d. %10s |", (i + 1), pokemons.get(i).toString()), 4);
 					System.out.println("+----------------+");
@@ -92,9 +106,12 @@ public class Tools {
 					delayedCharPrint(String.format("| %d. %11s |", (i + 1), pokemons.get(i).toString()), 4);
 					System.out.println("+----------------+");
 				}
+
 				break;
 			}
+
 		}
+
 	}
 
 	/**
@@ -109,6 +126,7 @@ public class Tools {
 
 		delayedCharPrint(message, 30);
 
+		// Create table
 		System.out.println("+---------------------------------+");
 		for (int i = 0; i < limit; i++) {
 			if (i + 1 < limit) {
@@ -159,8 +177,10 @@ public class Tools {
 		int n; // Stores number user will enter
 
 		while (true) {
+
 			System.out.print(message);
 			String input = stdin.nextLine();
+
 			// Try to parse input as integer
 			try {
 				n = Integer.parseInt(input);
@@ -175,7 +195,9 @@ public class Tools {
 			} else {
 				break; // Valid input 
 			}
+
 		}
+
 		return n;
 	}
 
@@ -192,8 +214,10 @@ public class Tools {
 	 * Clears console based on operating system
 	 */
 	public static void clearConsole () {
+
 		// Clear differently based on operating system using appropriate command
 		try {
+
 			// Invoking console clearing properly thanks to StackOverflow
 			if (System.getProperty("os.name").toLowerCase().contains("windows")) {
 				new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -201,18 +225,22 @@ public class Tools {
 				System.out.print("\033[H\033[2J");  
 				System.out.flush();
 			}
+
 		} catch(Exception e) {
+
 			// If all else fails, print some blank lines!
 			for (int i = 0; i < 40; i++) {
 				System.out.println();
 			}
 		}
+
 	}
 
 	/**
 	 * Displays command options in a help menu
 	 */
 	public static void help () {
+
 		// Print help menu faster
 		delayedLinePrint(new String[] {
 			"1. ATTACK  - Attack the enemy",
@@ -221,6 +249,7 @@ public class Tools {
 			"4. STATS   - View Pokemon statistics",
 			"5. VIEW    - View picture of Pokemon"
 		}, 20);
+
 	}
 
 }

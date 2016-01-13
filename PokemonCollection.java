@@ -13,7 +13,7 @@ public class PokemonCollection {
 	// ArrayList to hold all pokemon
 	public static ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
 	
-	public static Random rand                 = new Random();
+	public static Random rand = new Random();
 
 	// Slice data file in the constructor
 	public PokemonCollection () {
@@ -22,7 +22,7 @@ public class PokemonCollection {
 		// Try and catch the IOException
 		try {
 			inFile = new Scanner(new BufferedReader(new FileReader("resources/pokemon.txt")));
-		} catch(IOException e) {
+		} catch (IOException e) {
 			System.out.println("Could not loadfile 'resources/pokemon.txt'!");
 			System.exit(-1); // Exit program if file could not be found
 			return;
@@ -84,9 +84,9 @@ public class PokemonCollection {
 	 * @return selected     Randomly selected Pokemon object
 	 */
 	public static Pokemon randomPokemon () {
-		// Select a random Pokemon and remove it from pokemons ArrayList
+		// Select a random Pokemon, remove it from pokemons ArrayList and return it
 		Pokemon selected = pokemons.get(rand.nextInt(pokemons.size()));
-		removePokemon(selected.name);
+		removePokemon(selected);
 		return selected;
 	}
 
@@ -95,11 +95,7 @@ public class PokemonCollection {
 	 * 
 	 * @param name     Name of pokemon
 	 */
-	public static void removePokemon (String name) {
-		for (int i = 0; i < pokemons.size(); i++) {
-			if (pokemons.get(i).name.equals(name)) {
-				pokemons.remove(i);
-			}
-		}
+	public static void removePokemon (Pokemon p) {
+		pokemons.remove(p);
 	}
 }
