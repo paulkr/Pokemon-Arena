@@ -49,7 +49,9 @@ public class PokemonCollection {
 	 */
 	public static void processLine (String data) {
 
-		String[] content          = data.split(",");
+		String[] content          = data.split(","); // Data line
+
+		// Pokemon attributes
 		String name               = content[0];
 		int hp                    = Integer.parseInt(content[1]);
 		String resistance         = content[3];
@@ -69,7 +71,7 @@ public class PokemonCollection {
 			attacks.add(new Attack(content[6 + add], 
 							Integer.parseInt(content[6 + add + 1]),
 							Integer.parseInt(content[6 + add + 2]),
-							content[6 + add + 3].equals(" ") ? "NONE" : content[6 + add + 3]));
+							content[6 + add + 3].equals(" ") ? "NONE" : content[6 + add + 3].toUpperCase()));
 			add += 4;
 		}
 
@@ -84,6 +86,7 @@ public class PokemonCollection {
 	 * @return selected     Randomly selected Pokemon object
 	 */
 	public static Pokemon randomPokemon () {
+
 		// Select a random Pokemon, remove it from pokemons ArrayList and return it
 		Pokemon selected = pokemons.get(rand.nextInt(pokemons.size()));
 		removePokemon(selected);

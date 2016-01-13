@@ -12,7 +12,7 @@ public class Pokemon extends Tools {
 	int hp, energy;
 
 	final String name;
-	final int maxHP;
+	final int maxHP; // Starting hp for setting max restoration limit
 	final String type;
 	final String resistance;
 	final String weakness;
@@ -39,7 +39,7 @@ public class Pokemon extends Tools {
 	}
 
 	/**
-	 * List all Pokemon's attack details
+	 * List all Pokemon's attack details in a formatted table
 	 */
 	public void listAttacks () {
 		for (int i = 0; i < attacks.size(); i++) {
@@ -68,6 +68,7 @@ public class Pokemon extends Tools {
 	 * @return     ArrayList of attacks
 	 */
 	public ArrayList<Attack> affordableAttacks () {
+
 		// ArrayList of affordable attacks
 		ArrayList<Attack> affordable = new ArrayList<Attack>();
 
@@ -103,6 +104,7 @@ public class Pokemon extends Tools {
 	 * Resets Pokemon stats at the end of a turn
 	 */
 	public void resetTurn () {
+
 		// Add 10 energy to a maximum of 50
 		energy = Math.min(50, energy + 10);
 	}
@@ -111,6 +113,7 @@ public class Pokemon extends Tools {
 	 * Resets Pokemon stats at the end of a battle
 	 */
 	public void resetBattle () {
+
 		// Reset energy to 50 and add 20 to hp
 		energy = 50;
 		hp = Math.min(maxHP, hp + 20);

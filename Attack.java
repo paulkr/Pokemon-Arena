@@ -40,6 +40,7 @@ public class Attack extends Tools {
 
 		// If attacker is disabled
 		if (predator.isDisabled) {
+
 			// Inform the player of this tragedy
 			delayedCharPrint(String.format("%s is disabled!", predator.toString()), 40);
 			delayedCharPrint("The attack has been weakened!", 40);
@@ -48,10 +49,11 @@ public class Attack extends Tools {
 			attackPower = Math.max(0, attackPower - 10);
 		}
 
-		// If the attacker has a weakness
+		// If the attacker or defender has a weakness
 		if (predator.type.equals(prey.resistance)) {
 			delayedCharPrint(String.format("Oh no! %s is resistant to %s!\nThe attack was not that effective!", prey.toString(), name), 40);
 			attackPower /= 2; // Cut attack power in half
+
 		} else if (predator.type.equals(prey.weakness)) {
 			delayedCharPrint(String.format("%s has a weakness to %s!\nThe attack was super effective!", prey.toString(), name), 40);
 			attackPower *= 2; // Double the attack power
@@ -61,7 +63,6 @@ public class Attack extends Tools {
 		switch (special) {
 
 			case "STUN":
-				System.out.println("stun attack");
 
 				prey.hp -= attackPower; // Attack
 
@@ -74,7 +75,6 @@ public class Attack extends Tools {
 				break;
 
 			case "WILD CARD":
-				System.out.println("wild card attack");
 
 				// 50% chance to land successful attack
 				if (randChoice()) {
@@ -87,15 +87,16 @@ public class Attack extends Tools {
 				break;
 
 			case "WILD STORM":
-				System.out.println("wild storm attack");
 
+				// Keep going until randChoice() returns false
 				while (randChoice()) {
 					prey.hp -= attackPower; // Attack
 					delayedCharPrint(String.format("%s dealt %d damage to %s!", predator.toString(), attackPower, prey.toString()), 40);
 				}
 
+				break;
+
 			case "DISABLE":
-				System.out.println("disable attack");
 
 				// Attack and disable
 				prey.hp -= attackPower;
@@ -104,8 +105,9 @@ public class Attack extends Tools {
 				delayedCharPrint(String.format("%s has been disabled!", prey.toString()), 40);
 				delayedCharPrint(String.format("%s dealt %d damage to %s!", predator.toString(), attackPower, prey.toString()), 40);
 
+				break;
+
 			case "RECHARGE":
-				System.out.println("rechagrge attack");
 
 				prey.hp -= attackPower;
 				
@@ -115,12 +117,15 @@ public class Attack extends Tools {
 
 				delayedCharPrint(String.format("%s dealt %d damage to %s!", predator.toString(), attackPower, prey.toString()), 40);
 
+				break;
+
 			// Nothing special
 			default:
-				System.out.println("nothign attack");
 
 				prey.hp -= attackPower;
 				delayedCharPrint(String.format("%s dealt %d damage to %s!", predator.toString(), attackPower, prey.toString()), 40);
+
+				break;
 
 		}
 	}

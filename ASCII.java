@@ -61,7 +61,7 @@ public class ASCII extends Tools {
 	
 
 	/**
-	 * Introduction title
+	 * Introduction title animations
 	 */
 	public static void introTitle () {
 		delayedLinePrint(pokeTitle, 40);

@@ -15,17 +15,9 @@ public class PokemonArena extends Tools {
 
 	public static void main (String[] args) {
 
-		// gameIntro();
+		gameIntro();
 
-		// selectPokemon();
-		
-
-		// Static team for testing
-		pokemonTeam.add(pokeLot.pokemons.get(0));
-		pokemonTeam.add(pokeLot.pokemons.get(1));
-		pokemonTeam.add(pokeLot.pokemons.get(2));
-		pokemonTeam.add(pokeLot.pokemons.get(3));
-
+		selectPokemon();
 
 		boolean winning = true;
 
@@ -55,6 +47,7 @@ public class PokemonArena extends Tools {
 	 * Graphic sequence for game introduction
 	 */
 	public static void gameIntro () {
+
 		// Display titles
 		ASCII.introTitle();
 		clearConsole();
@@ -77,6 +70,7 @@ public class PokemonArena extends Tools {
 	 * Method for user to select 4 Pokemon for their team
 	 */
 	public static void selectPokemon () {
+
 		int chosen = 0; // Counter for number of selected Pokemon
 
 		while (chosen != 4) {
@@ -97,11 +91,12 @@ public class PokemonArena extends Tools {
 			String confirmation = getString("", String.format("Would you like to choose %s [y/n]? ", selectedPokemon.toString()), true);
 
 			if (confirmation.toLowerCase().equals("y")) {
+
 				// Add to the pokemon team and remove from the options
 				pokemonTeam.add(selectedPokemon);
 				pokeLot.removePokemon(selectedPokemon);
 
-				delayedCharPrint(String.format("\nYou selected: %s!\n",selectedPokemon.toString()), 40);
+				delayedCharPrint(String.format("\nYou selected: %s!\n", selectedPokemon.toString()), 40);
 
 				chosen ++;
 			}
@@ -109,13 +104,12 @@ public class PokemonArena extends Tools {
 		}
 
 		// Display user's Pokemon team
-
 		listOptions(new String[] {
 			pokemonTeam.get(0).toString(),
 			pokemonTeam.get(1).toString(),
 			pokemonTeam.get(2).toString(),
 			pokemonTeam.get(3).toString(),
-		}, "Awesome job! Here is your team\n");
+		}, "Awesome! Here is your team\n");
 
 		sleep(500);
 		delayedCharPrint("Get ready to fight!", 35);
@@ -157,9 +151,11 @@ public class PokemonArena extends Tools {
 
 		if (!enemy.isStunned) {
 			if (enemy.affordableAttacks().size() > 0) {
+
 				Attack randEnemyAttack = enemy.randomAttack();
 				randEnemyAttack.attack(enemy, user);
 				enemy.resetTurn();
+
 			} else {
 				delayedCharPrint("Enemy passes!", 30);
 			}
@@ -332,6 +328,7 @@ public class PokemonArena extends Tools {
 					}
 
 					if (isWinnning) {
+
 						// Choose new Pokemon
 						userPokemon = choseFromTeam();
 						moveOn = false;
@@ -347,9 +344,9 @@ public class PokemonArena extends Tools {
 
 			}
 
-			// End of a battle
-			resetAllPokemon(enemy); // Reset turn stats
-			starter = starter.equals("user") ? "enemy" : "user"; // Alternate turns
+			// End of a turn
+			resetAllPokemon(enemy); // Reset Pokemon stats
+			starter = starter.equals("user") ? "enemy" : "user"; // Alternate turn
 
 		}
 

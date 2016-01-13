@@ -146,6 +146,7 @@ public class Tools {
 	 * @return            Input string
 	 */
 	public static String getString (String toFind, String message, boolean inline) {
+
 		String output = "";
 
 		if (inline) {
@@ -174,14 +175,15 @@ public class Tools {
 	 * @return              The valid number entered
 	 */
 	public static int getInt (int min, int max, String message) {
-		int n; // Stores number user will enter
+
+		int n; // User input holder
 
 		while (true) {
 
 			System.out.print(message);
 			String input = stdin.nextLine();
 
-			// Try to parse input as integer
+			// Try to parse input as an integer
 			try {
 				n = Integer.parseInt(input);
 			} catch (NumberFormatException e) {
@@ -226,7 +228,7 @@ public class Tools {
 				System.out.flush();
 			}
 
-		} catch(Exception e) {
+		} catch (Exception e) {
 
 			// If all else fails, print some blank lines!
 			for (int i = 0; i < 40; i++) {

@@ -1,3 +1,9 @@
+#!/usr/bin/env python
+#
+# lineCt.py
+# Paul Krishnamurthy
+# Counts the number of lines in every java file
+
 from glob import glob
 lines = 0
 
