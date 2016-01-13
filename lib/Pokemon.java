@@ -128,11 +128,11 @@ public class Pokemon extends Tools {
 	public void stats (boolean fancy) {
 		if (fancy) {
 			delayedLinePrint(new String[] {
-				"\n+----------------------------------------------+",
-				"|                    STATS                     |",
-				"+==============================================+",
+				"\n+-----------------------------------------------+",
+				"|                    STATS                      |",
+				"+===============================================+",
 				String.format("| HP: %5d | ENERGY : %5d | TYPE: %10s |", hp, energy, type.toUpperCase()),
-				"+----------------------------------------------+\n"
+				"+-----------------------------------------------+\n"
 			}, 20);
 		} else {
 			delayedCharPrint(String.format("\nPOKEMON : %s\nHP      : %d\nENERGY  : %d\nTYPE    : %s", name, hp, energy, type.toUpperCase()), 30);

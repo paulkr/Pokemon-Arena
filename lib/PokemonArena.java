@@ -109,12 +109,10 @@ public class PokemonArena extends Tools {
 			pokemonTeam.get(1).toString(),
 			pokemonTeam.get(2).toString(),
 			pokemonTeam.get(3).toString(),
-		}, "Awesome! Here is your team\n");
+		}, "Awesome! Here is your team:\n");
 
 		sleep(500);
-		delayedCharPrint("Get ready to fight!", 35);
-		sleep(600);
-
+		getString("enter", "\nAre you ready to fight? Press [enter]", false);
 		clearConsole();
 	}
 
@@ -224,13 +222,15 @@ public class PokemonArena extends Tools {
 					}, "\nSelect your action!");
 
 					curAction = getInt(1, 6, "\nEnter number: "); // Select option
+					
+					clearConsole(); // COMMENT TO KEEP TEXT ON SCREEN
 
 					switch (curAction) {
 
 						// Attack
 						case 1:
 							while (true) {
-								delayedCharPrint("ENTER < 0 > TO GO BACK\n", 30);
+								delayedCharPrint("\nENTER < 0 > TO GO BACK\n", 30);
 								delayedCharPrint("Select an attack! Here are your options:\n", 30);
 			
 								userPokemon.listAttacks(); // Display attack options

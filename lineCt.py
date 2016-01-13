@@ -7,8 +7,9 @@
 from glob import glob
 lines = 0
 
-for f in glob("*.java"):
+for f in glob("lib/*.java"):
 	print("Counting:", f)
 	lines += open(f).read().count("\n")
 
-print("Total lines:", lines)
+print("\nTotal lines:", lines)
+input()

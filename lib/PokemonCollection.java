@@ -17,6 +17,7 @@ public class PokemonCollection {
 
 	// Slice data file in the constructor
 	public PokemonCollection () {
+
 		Scanner inFile;
 
 		// Try and catch the IOException
