@@ -223,7 +223,7 @@ public class PokemonArena extends Tools {
 
 					curAction = getInt(1, 6, "\nEnter number: "); // Select option
 
-					clearConsole(); // COMMENT TO KEEP TEXT ON SCREEN
+					// clearConsole(); // UNCOMMENT TO CLEAN TEXT AFTER CYCLE
 
 					switch (curAction) {
 
