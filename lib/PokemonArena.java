@@ -222,7 +222,7 @@ public class PokemonArena extends Tools {
 					}, "\nSelect your action!");
 
 					curAction = getInt(1, 6, "\nEnter number: "); // Select option
-					
+
 					clearConsole(); // COMMENT TO KEEP TEXT ON SCREEN
 
 					switch (curAction) {
