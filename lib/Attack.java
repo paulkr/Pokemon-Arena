@@ -34,7 +34,7 @@ public class Attack extends Tools {
 		int attackPower = damage;
 
 		// Display attack name
-		delayedCharPrint(String.format("%s uses %s against %s", predator.toString(), name, prey.toString()), 40);
+		delayedCharPrint(String.format("\n%s uses %s against %s", predator.toString(), name, prey.toString()), 40);
 
 		predator.energy -= cost; // Lower attacker's energy
 
@@ -42,8 +42,7 @@ public class Attack extends Tools {
 		if (predator.isDisabled) {
 
 			// Inform the player of this tragedy
-			delayedCharPrint(String.format("%s is disabled!", predator.toString()), 40);
-			delayedCharPrint("The attack has been weakened!", 40);
+			delayedCharPrint(String.format("%s is disabled, so the attack is weakened!\n", predator.toString()), 40);
 
 			// Try to lower 10 from the attack power
 			attackPower = Math.max(0, attackPower - 10);
@@ -51,11 +50,11 @@ public class Attack extends Tools {
 
 		// If the attacker or defender has a weakness
 		if (predator.type.equals(prey.resistance)) {
-			delayedCharPrint(String.format("Oh no! %s is resistant to %s!\nThe attack was not that effective!", prey.toString(), name), 40);
+			delayedCharPrint(String.format("\nOh no! %s is resistant to %s!\nThe attack was not that effective!", prey.toString(), name), 40);
 			attackPower /= 2; // Cut attack power in half
 
 		} else if (predator.type.equals(prey.weakness)) {
-			delayedCharPrint(String.format("%s has a weakness to %s!\nThe attack was super effective!", prey.toString(), name), 40);
+			delayedCharPrint(String.format("\n%s has a weakness to %s!\nThe attack was super effective!", prey.toString(), name), 40);
 			attackPower *= 2; // Double the attack power
 		}
 		
